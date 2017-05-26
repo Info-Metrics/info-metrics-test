@@ -1,9 +1,14 @@
 .top-bar a {
-    color: $white;
+    color: $dark-gray;
 }
 
-.top-bar-right a:hover {
+.top-bar-right li a:hover {
     background-color: lighten($topbar-background, 20%);
+    color: white;
+}
+
+.menu a:hover {
+  background-color: $light-gray;
 }
 
 #toc {
@@ -38,3 +43,37 @@
 p.subtitle {
     font-size: 2em;
 }
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+.w3-button{border:none;display:inline-block;outline:0;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+
+.w3-display-left{position:absolute;top:50%;left:0%;transform:translate(0%,-50%);-ms-transform:translate(-0%,-50%)}
+
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#000!important}
+
+.w3-display-right{position:absolute;top:50%;right:0%;transform:translate(0%,-50%);-ms-transform:translate(0%,-50%)}
