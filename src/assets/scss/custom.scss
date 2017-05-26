@@ -1,0 +1,40 @@
+.top-bar a {
+    color: $white;
+}
+
+.top-bar-right a:hover {
+    background-color: lighten($topbar-background, 20%);
+}
+
+#toc {
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.5em;
+        text-indent: 1em;
+    }
+    h3 {
+        font-size: 1em;
+        text-indent: 2em;
+    }
+    h4 {
+        font-size: 1em;
+        text-indent: 3em;
+    }
+    h5 {
+        font-size: 1em;
+        text-indent: 4em;
+    }
+    h6 {
+        font-size: 1em;
+        text-indent: 5em;
+    }
+    p {
+        text-indent: 6em;
+    }
+}
+
+p.subtitle {
+    font-size: 2em;
+}
