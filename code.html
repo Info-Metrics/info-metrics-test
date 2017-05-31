@@ -10,8 +10,8 @@
   </head>
   <body>
 
-    
-        <div class="top-bar">
+    <div data-sticky-container>
+        <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
           <div class="top-bar-title">
               <a href="#">Foundations of Info-Metrics</a>
           </div>
@@ -19,7 +19,7 @@
             <div class="top-bar-left">
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
+                <ul class="menu" data-accordion-menu>
                     <li>
                         <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
                     </li>
@@ -30,11 +30,11 @@
             </div>
           </div>
         </div>
-    
+    </div>
     <div class="row">
         <div class="column small-12 medium-3">
             <nav>
-                <ul class="menu vertical">
+                <ul class="menu vertical" data-accordion>
                     <li >
                         <a href="/index.html">Home</a></li>
                     <li >
@@ -59,7 +59,6 @@
         </div>
         <div class="column small-12 medium-9">
             <h1>Code Examples</h1>
-            <div class="row">
                 <h2>Contents</h2>
                 <ul>
                     <li>
@@ -98,516 +97,515 @@
                         <a href="#contributing">Contributing</a>
                     </li>
                 </ul>
-            </div>
-            <h3 id="getting_started">Getting Started</h3>
+            <h2 id="getting_started">Getting Started</h2>
             
             <p>You can download all of the code examples for the book
                 <a href="/assets/code_examples/all_codes.zip"> here</a>.</p>
                 <div class="callout alert">
-                   <strong>Notice!</strong> You will need the appropriate software (GAMS, Python, Stata, SAS, Matlab, Excel or NLOGIT) to run the code examples.  See  below to see how to set up the software.
-               </div>
-               <p>The table below contains a brief description of what each example
-                   does.  For details on how to set up your computer to run the code
-                   examples, see the <a href="#requirements">requirements</a>
-                   section below.</p>
-                   <div id="code-toc">
-                     <p><input class="search" placeholder="Search" /></p>
-                     <p>
-                         Filter by language:
-                         <button type="button" class="button langfilter" id="Python">Python</button>
-                         <button type="button" class="button langfilter" id="GAMS">GAMS</button>
-                         <button type="button" class="button langfilter" id="SAS">SAS</button>
-                         <button type="button" class="button langfilter" id="Stata">Stata</button>
-                         <button type="button" class="button langfilter" id="Limdep">NLOGIT</button>
-                         <button type="button" class="button langfilter" id="Excel">Excel</button>
-                         <button type="button" class="button langfilter" id="Matlab">Matlab</button>
-                     </p>
-                     <p>
-                         Chapters
-                         <button type="button" class="button primary chapfilter" id='2'>2</button>
-                         <button type="button" class="button primary chapfilter" id='3'>3</button>
-                         <button type="button" class="button primary chapfilter" id='4'>4</button>
-                         <button type="button" class="button primary chapfilter" id='5'>5</button>
-                         <button type="button" class="button primary chapfilter" id='6'>6</button>
-                         <button type="button" class="button primary chapfilter" id='7'>7</button>
-                         <button type="button" class="button primary chapfilter" id='8'>8</button>
-                         <button type="button" class="button primary chapfilter" id='9'>9</button>
-                         <button type="button" class="button primary chapfilter" id='10'>10</button>
-                         <button type="button" class="button primary chapfilter" id='11'>11</button>
-                         <button type="button" class="button primary chapfilter" id='12'>12</button>
-                         <button type="button" class="button primary chapfilter" id='13'>13</button>
-                         <button type="button" class="button primary chapfilter" id='14'>14</button>
-                     </p>
-                     <table class="table table-striped">
-                       <thead>
-                           <tr>
-                             <th>File Name</th>
-                             <th>Language</th>
-                             <th>Keywords</th>
-                             <th>Relevant Chapters</th>
-                             <th>Description</th>
-                         </tr>
-                     </thead>
-                     <tbody class="list">
-            
+                 <strong>Notice!</strong> You will need the appropriate software (GAMS, Python, Stata, SAS, Matlab, Excel or NLOGIT) to run the code examples.  See  below to see how to set up the software.
+             </div>
+             <p>The table below contains a brief description of what each example
+                 does.  For details on how to set up your computer to run the code
+                 examples, see the <a href="#requirements">requirements</a>
+                 section below.</p>
+                 <div id="code-toc">
+                   <p><input class="search" placeholder="Search" /></p>
+                   <p>
+                       Filter by language:
+                       <button type="button" class="button langfilter" id="Python">Python</button>
+                       <button type="button" class="button langfilter" id="GAMS">GAMS</button>
+                       <button type="button" class="button langfilter" id="SAS">SAS</button>
+                       <button type="button" class="button langfilter" id="Stata">Stata</button>
+                       <button type="button" class="button langfilter" id="Limdep">NLOGIT</button>
+                       <button type="button" class="button langfilter" id="Excel">Excel</button>
+                       <button type="button" class="button langfilter" id="Matlab">Matlab</button>
+                   </p>
+                   <p>
+                       Chapters
+                       <button type="button" class="button primary chapfilter" id='2'>2</button>
+                       <button type="button" class="button primary chapfilter" id='3'>3</button>
+                       <button type="button" class="button primary chapfilter" id='4'>4</button>
+                       <button type="button" class="button primary chapfilter" id='5'>5</button>
+                       <button type="button" class="button primary chapfilter" id='6'>6</button>
+                       <button type="button" class="button primary chapfilter" id='7'>7</button>
+                       <button type="button" class="button primary chapfilter" id='8'>8</button>
+                       <button type="button" class="button primary chapfilter" id='9'>9</button>
+                       <button type="button" class="button primary chapfilter" id='10'>10</button>
+                       <button type="button" class="button primary chapfilter" id='11'>11</button>
+                       <button type="button" class="button primary chapfilter" id='12'>12</button>
+                       <button type="button" class="button primary chapfilter" id='13'>13</button>
+                       <button type="button" class="button primary chapfilter" id='14'>14</button>
+                   </p>
+                   <table class="table-scroll">
+                     <thead>
                          <tr>
-                             <td class="name"><a href="codes/Classical_ME_Example1.gms">Classical_ME_Example1.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">classical MaxEnt</td>
-                             <td class="chaps">4</td>
-                             <td>Classical Maximum Entropy First Example</td>
-                         </tr>
+                           <th>File Name</th>
+                           <th>Language</th>
+                           <th>Keywords</th>
+                           <th>Relevant Chapters</th>
+                           <th>Description</th>
+                       </tr>
+                   </thead>
+                   <tbody class="list">
             
-                         <tr>
-                             <td class="name"><a href="codes/Classical_Dual_ME_Example2.gms">Classical_Dual_ME_Example2.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">dual, concentrated, basic examples</td>
-                             <td class="chaps">4</td>
-                             <td>Concentrated (Dual) Maximum Entropy Example</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Classical_Dual_ME_Example2_Surprisal.gms">Classical_Dual_ME_Example2_Surprisal.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">surprisal, dual, concentrated</td>
-                             <td class="chaps">6</td>
-                             <td>Classical concentrated Maximum Entropy example 2 with surprisal analysis.</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Classical_ME_Dice_Example.gms">Classical_ME_Dice_Example.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">classical MaxEnt, dice</td>
-                             <td class="chaps">4</td>
-                             <td>Classical Maximum Entropy Dice Example</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Classical_ME_Dice_Example_surprisal.gms">Classical_ME_Dice_Example_surprisal.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">surprisal, dual, dice, classical</td>
-                             <td class="chaps">6</td>
-                             <td>Classical Maximum Entropy Dice Example surprisal analysis.</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Dual-Info.gms">Dual-Info.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys"></td>
-                             <td class="chaps">4</td>
-                             <td></td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Dice mata optimize.do">Dice mata optimize.do</a></td>
-                             <td class="lang">Stata</td>
-                             <td class="keys">dice, classical, dual, cocentrated</td>
-                             <td class="chaps">4</td>
-                             <td>Stata dice example using Stata's Matrix Language</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Dice NR.do">Dice NR.do</a></td>
-                             <td class="lang">Stata</td>
-                             <td class="keys"></td>
-                             <td class="chaps">9</td>
-                             <td></td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Example 2 Dual ME STATA.do">Example 2 Dual ME STATA.do</a></td>
-                             <td class="lang">Stata</td>
-                             <td class="keys"></td>
-                             <td class="chaps">4</td>
-                             <td></td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Inequality portfolio.gms">Inequality portfolio.gms</a></td>
-                             <td class ="lang">GAMS</td>
-                             <td class="keys">portfolio, empirical examples</td>
-                             <td class="chaps">5</td>
-                             <td class=""></td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/MV.gms">MV.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">portfolio, empirical examples</td>
-                             <td class="chaps">5</td>
-                             <td class="">Minimum Variance portfolio example</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Short sale portfolio.gms">Short sale portfolio.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">portfolio, empirical examples</td>
-                             <td class="chaps">5</td>
-                             <td class="">Portfolio example with short sales</td>
-                         </tr>
-            
-                         <tr>
-                             <td class="name"><a href="codes/Simple case portfolio.gms">Simple case portfolio.gms</a></td>
-                             <td class="lang">GAMS</td>
-                             <td class="keys">portfolio, empirical examples</td>
-                             <td class="chaps">5</td>
-                             <td class="">Simple portfolio example</td>
-                         </tr>
-            
-                         <tr>
-                           <td class="name"><a href="codes/Utility portfolio.gms">Utility portfolio.gms</a></td>
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Classical_ME_Example1.gms">Classical_ME_Example1.gms</a></td>
                            <td class="lang">GAMS</td>
-                           <td class="keys">portfolio, empirical examples</td>
-                           <td class="chaps">5</td>
+                           <td class="keys">classical MaxEnt</td>
+                           <td class="chaps">4</td>
+                           <td>Classical Maximum Entropy First Example</td>
+                       </tr>
+            
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Classical_Dual_ME_Example2.gms">Classical_Dual_ME_Example2.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys">dual, concentrated, basic examples</td>
+                           <td class="chaps">4</td>
+                           <td>Concentrated (Dual) Maximum Entropy Example</td>
+                       </tr>
+            
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Classical_Dual_ME_Example2_Surprisal.gms">Classical_Dual_ME_Example2_Surprisal.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys">surprisal, dual, concentrated</td>
+                           <td class="chaps">6</td>
+                           <td>Classical concentrated Maximum Entropy example 2 with surprisal analysis.</td>
+                       </tr>
+            
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Classical_ME_Dice_Example.gms">Classical_ME_Dice_Example.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys">classical MaxEnt, dice</td>
+                           <td class="chaps">4</td>
+                           <td>Classical Maximum Entropy Dice Example</td>
+                       </tr>
+            
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Classical_ME_Dice_Example_surprisal.gms">Classical_ME_Dice_Example_surprisal.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys">surprisal, dual, dice, classical</td>
+                           <td class="chaps">6</td>
+                           <td>Classical Maximum Entropy Dice Example surprisal analysis.</td>
+                       </tr>
+            
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Dual-Info.gms">Dual-Info.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys"></td>
+                           <td class="chaps">4</td>
                            <td></td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/Smoker_limdep.lim">Smoker_limdep.lim</a></td>
-                           <td class="lang">Limdep</td>
-                           <td class="keys">discrete choice, binomial, logit, empirical examples</td>
-                           <td class="chaps">12</td>
-                           <td>Binomial Discrete Choice Model example (Limdep).</td>
-                       </tr>
-            
-                       <tr>
-                           <td class="name"><a href="codes/sas smoker.sas">sas smoker.sas</a></td>
-                           <td class="lang">SAS</td>
-                           <td class="keys">discrete choice, binomial, logit, empirical examples</td>
-                           <td class="chaps">12</td>
-                           <td>Binomial Discrete Choice Model example (SAS).</td>
-                       </tr>
-            
-                       <tr>
-                           <td class="name"><a href="codes/Smoker_stata.do">Smoker_stata.do</a></td>
+                           <td class="name"><a href="assets/code_examples/Dice mata optimize.do">Dice mata optimize.do</a></td>
                            <td class="lang">Stata</td>
-                           <td class="keys">discrete choice, binomial, logit, empirical examples</td>
-                           <td class="chaps">2</td>
-                           <td>Binomial Discrete Choice Example (Stata).</td>
+                           <td class="keys">dice, classical, dual, cocentrated</td>
+                           <td class="chaps">4</td>
+                           <td>Stata dice example using Stata's Matrix Language</td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/Random multinomial.do">Random multinomial.do</a></td>
+                           <td class="name"><a href="assets/code_examples/Dice NR.do">Dice NR.do</a></td>
                            <td class="lang">Stata</td>
-                           <td class="keys">discrete choice, multinomial, empirical examples</td>
-                           <td class="chaps">12</td>
-                           <td>Multinomial Discrete Choice example. Generates random data and presents estimates of the MSE for GME multinomial logit as well as for the multinomial logit.</td>
+                           <td class="keys"></td>
+                           <td class="chaps">9</td>
+                           <td></td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/gmemultinomial.ado">gmemultinomial.ado</a></td>
+                           <td class="name"><a href="assets/code_examples/Example 2 Dual ME STATA.do">Example 2 Dual ME STATA.do</a></td>
                            <td class="lang">Stata</td>
-                           <td class="keys">discrete choice, multinomial, empirical examples, ADO files</td>
-                           <td class="chaps">12</td>
-                           <td>ADO file for multinomial discrete choice example.  Needs to be installed for the multinomial model using MaxEnt approach to work.</td>
+                           <td class="keys"></td>
+                           <td class="chaps">4</td>
+                           <td></td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/gmentropylogit.ado">gmentropylogit.ado</a></td>
-                           <td class="lang">Stata</td>
-                           <td class="keys">ADO files, logit, binomial, discrete choice</td>
-                           <td class="chaps">12</td>
-                           <td>ADO file for binomial discrete choice (logit) model. Needs to be installed for the multinomial model using MaxEnt approach to work.</td>
+                           <td class="name"><a href="assets/code_examples/Inequality portfolio.gms">Inequality portfolio.gms</a></td>
+                           <td class ="lang">GAMS</td>
+                           <td class="keys">portfolio, empirical examples</td>
+                           <td class="chaps">5</td>
+                           <td class=""></td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/Linear auto.gms">Linear auto.gms</a></td>
+                           <td class="name"><a href="assets/code_examples/MV.gms">MV.gms</a></td>
                            <td class="lang">GAMS</td>
-                           <td class="keys">linear regression,empirical examples</td>
-                           <td class="chaps">13</td>
-                           <td>Linear regression example</td>
+                           <td class="keys">portfolio, empirical examples</td>
+                           <td class="chaps">5</td>
+                           <td class="">Minimum Variance portfolio example</td>
                        </tr>
             
                        <tr>
-                           <td class="name"><a href="codes/Linear random.gms">Linear random.gms</a></td>
+                           <td class="name"><a href="assets/code_examples/Short sale portfolio.gms">Short sale portfolio.gms</a></td>
                            <td class="lang">GAMS</td>
-                           <td class="keys">linear regression,empirical examples</td>
-                           <td class="chaps">13</td>
-                           <td>Linear regression example.  Similar to linear auto.gms
-                               but generates it's own data.</td>
-                           </tr>
+                           <td class="keys">portfolio, empirical examples</td>
+                           <td class="chaps">5</td>
+                           <td class="">Portfolio example with short sales</td>
+                       </tr>
             
-                           <tr>
-                               <td class="name"><a href="codes/GME auto.sas">GME auto.sas</a></td>
-                               <td class="lang">SAS</td>
-                               <td class="keys">linear regression,empirical examples</td>
-                               <td class="chaps">13</td>
-                               <td>Linear regression in SAS using the example Automobile data</td>
-                           </tr>
+                       <tr>
+                           <td class="name"><a href="assets/code_examples/Simple case portfolio.gms">Simple case portfolio.gms</a></td>
+                           <td class="lang">GAMS</td>
+                           <td class="keys">portfolio, empirical examples</td>
+                           <td class="chaps">5</td>
+                           <td class="">Simple portfolio example</td>
+                       </tr>
             
-                           <tr>
-                               <td class="name"><a href="codes/GME random.sas">GME random.sas</a></td>
-                               <td class="lang">SAS</td>
-                               <td class="keys">linear regression, empirical examples</td>
-                               <td class="chaps">13</td>
-                               <td>Linear regression in SAS. Similar to GME random.sas
-                                   but generates it's own data.</td>
-                               </tr>
+                       <tr>
+                         <td class="name"><a href="assets/code_examples/Utility portfolio.gms">Utility portfolio.gms</a></td>
+                         <td class="lang">GAMS</td>
+                         <td class="keys">portfolio, empirical examples</td>
+                         <td class="chaps">5</td>
+                         <td></td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/GME auto example.do">GME auto example.do</a></td>
-                                   <td class="lang">Stata</td>
-                                   <td class="keys">linear regression, empirical examples</td>
-                                   <td class="chaps">13</td>
-                                   <td>Linear regression example in Stata.</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/Smoker_limdep.lim">Smoker_limdep.lim</a></td>
+                         <td class="lang">Limdep</td>
+                         <td class="keys">discrete choice, binomial, logit, empirical examples</td>
+                         <td class="chaps">12</td>
+                         <td>Binomial Discrete Choice Model example (Limdep).</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/gmentropylinear.ado">gmentropylinear.ado</a></td>
-                                   <td class="lang">Stata</td>
-                                   <td class="keys">ADO files, linear regression</td>
-                                   <td class="chaps">13</td>
-                                   <td>ADO file for linear regression.</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/sas smoker.sas">sas smoker.sas</a></td>
+                         <td class="lang">SAS</td>
+                         <td class="keys">discrete choice, binomial, logit, empirical examples</td>
+                         <td class="chaps">12</td>
+                         <td>Binomial Discrete Choice Model example (SAS).</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/Matrix1.gms">Matrix1.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys">matrix, markov</td>
-                                   <td class="chaps">9</td>
-                                   <td>Matrix balancing example</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/Smoker_stata.do">Smoker_stata.do</a></td>
+                         <td class="lang">Stata</td>
+                         <td class="keys">discrete choice, binomial, logit, empirical examples</td>
+                         <td class="chaps">2</td>
+                         <td>Binomial Discrete Choice Example (Stata).</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/Matrix2.gms">Matrix2.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys">matrix</td>
-                                   <td class="chaps">9</td>
-                                   <td>Matrix balancing example 2</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/Random multinomial.do">Random multinomial.do</a></td>
+                         <td class="lang">Stata</td>
+                         <td class="keys">discrete choice, multinomial, empirical examples</td>
+                         <td class="chaps">12</td>
+                         <td>Multinomial Discrete Choice example. Generates random data and presents estimates of the MSE for GME multinomial logit as well as for the multinomial logit.</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/Matrix3.gms">Matrix3.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys">matrix, markov</td>
-                                   <td class="chaps">9</td>
-                                   <td>Matrix balancing example 3</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/gmemultinomial.ado">gmemultinomial.ado</a></td>
+                         <td class="lang">Stata</td>
+                         <td class="keys">discrete choice, multinomial, empirical examples, ADO files</td>
+                         <td class="chaps">12</td>
+                         <td>ADO file for multinomial discrete choice example.  Needs to be installed for the multinomial model using MaxEnt approach to work.</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/dice two mean.do">dice two mean.do</a></td>
-                                   <td class="lang">Stata</td>
-                                   <td class="keys">noise, dice, two means, stochastic moments</td>
-                                   <td class="chaps">9</td>
-                                   <td>Dice example with two means (noisy/stochastic moments) in Stata.</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/gmentropylogit.ado">gmentropylogit.ado</a></td>
+                         <td class="lang">Stata</td>
+                         <td class="keys">ADO files, logit, binomial, discrete choice</td>
+                         <td class="chaps">12</td>
+                         <td>ADO file for binomial discrete choice (logit) model. Needs to be installed for the multinomial model using MaxEnt approach to work.</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/two mean dice loop.gms">two mean dice loop.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys">noise, dice, two means, stochastic moments</td>
-                                   <td class="chaps">9</td>
-                                   <td>Dice example with two means (programmed using GAMS loop functionality)</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/Linear auto.gms">Linear auto.gms</a></td>
+                         <td class="lang">GAMS</td>
+                         <td class="keys">linear regression,empirical examples</td>
+                         <td class="chaps">13</td>
+                         <td>Linear regression example</td>
+                     </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/two mean dice.gms">two mean dice.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys">noise, dice, two means, stochastic moments</td>
-                                   <td class="chaps">9</td>
-                                   <td>Dice example with two means in GAMS.</td>
-                               </tr>
+                     <tr>
+                         <td class="name"><a href="assets/code_examples/Linear random.gms">Linear random.gms</a></td>
+                         <td class="lang">GAMS</td>
+                         <td class="keys">linear regression,empirical examples</td>
+                         <td class="chaps">13</td>
+                         <td>Linear regression example.  Similar to linear auto.gms
+                             but generates it's own data.</td>
+                         </tr>
             
-                               <tr>
-                                   <td class="name"><a href="codes/Weighted.gms">Weighted.gms</a></td>
-                                   <td class="lang">GAMS</td>
-                                   <td class="keys"></td>
-                                   <td class="chaps">14</td>
-                                   <td></td>
-                               </tr>
+                         <tr>
+                             <td class="name"><a href="assets/code_examples/GME auto.sas">GME auto.sas</a></td>
+                             <td class="lang">SAS</td>
+                             <td class="keys">linear regression,empirical examples</td>
+                             <td class="chaps">13</td>
+                             <td>Linear regression in SAS using the example Automobile data</td>
+                         </tr>
             
-                               <tr>
-                                 <td class="name"><a href="codes/dual_classical.py">dual_classical.py</a></td>
-                                 <td class="lang">Python</td>
-                                 <td class="keys">basic examples, classical, concentrated, dual</td>
-                                 <td class="chaps">4</td>
-                                 <td class="">Optimize the dual concentrated maximum entropy objective.</td>
+                         <tr>
+                             <td class="name"><a href="assets/code_examples/GME random.sas">GME random.sas</a></td>
+                             <td class="lang">SAS</td>
+                             <td class="keys">linear regression, empirical examples</td>
+                             <td class="chaps">13</td>
+                             <td>Linear regression in SAS. Similar to GME random.sas
+                                 but generates it's own data.</td>
                              </tr>
             
                              <tr>
-                                 <td class="name"><a href="codes/matrix_balancing.py">matrix_balancing.py</a></td>
-                                 <td class="lang">Python</td>
-                                 <td class="keys">matrix balancing, markov process</td>
+                                 <td class="name"><a href="assets/code_examples/GME auto example.do">GME auto example.do</a></td>
+                                 <td class="lang">Stata</td>
+                                 <td class="keys">linear regression, empirical examples</td>
+                                 <td class="chaps">13</td>
+                                 <td>Linear regression example in Stata.</td>
+                             </tr>
+            
+                             <tr>
+                                 <td class="name"><a href="assets/code_examples/gmentropylinear.ado">gmentropylinear.ado</a></td>
+                                 <td class="lang">Stata</td>
+                                 <td class="keys">ADO files, linear regression</td>
+                                 <td class="chaps">13</td>
+                                 <td>ADO file for linear regression.</td>
+                             </tr>
+            
+                             <tr>
+                                 <td class="name"><a href="assets/code_examples/Matrix1.gms">Matrix1.gms</a></td>
+                                 <td class="lang">GAMS</td>
+                                 <td class="keys">matrix, markov</td>
                                  <td class="chaps">9</td>
-                                 <td class="">Classical ME CE and Dual formulations for the Matrix Balancing problem: y=Ax where A is a K by K matrix and coefficients of each one of the K columns sum up to 1 (i.e., proper distribution). Example 1: an 11 by 11 SAM of the US Comparing the primal and concentrated (dual) models Try with the given priors and with uniform priors</td>
+                                 <td>Matrix balancing example</td>
                              </tr>
             
                              <tr>
-                                 <td class="name"><a href="codes/Primal-Taylor.gms">Primal-Taylor.gms</a></td>
+                                 <td class="name"><a href="assets/code_examples/Matrix2.gms">Matrix2.gms</a></td>
                                  <td class="lang">GAMS</td>
-                                 <td class="keys">curvature</td>
-                                 <td class="chaps">14</td>
-                                 <td class=""></td>
+                                 <td class="keys">matrix</td>
+                                 <td class="chaps">9</td>
+                                 <td>Matrix balancing example 2</td>
                              </tr>
             
                              <tr>
-                                 <td class="name"><a href="codes/primal_classical.py">primal_classical.py</a></td>
-                                 <td class="lang">Python</td>
-                                 <td class="keys">basic examples, classical</td>
-                                 <td class="chaps">4</td>
-                                 <td class="">Maximize the classical maximum entropy objective function.</td>
-                             </tr>
-            
-                             <tr>
-                                 <td class="name"><a href="codes/centropy hessian.gms">centropy hessian.gms</a></td>
+                                 <td class="name"><a href="assets/code_examples/Matrix3.gms">Matrix3.gms</a></td>
                                  <td class="lang">GAMS</td>
-                                 <td class="keys">hessian, curvature, classical MaxEnt, CrossEnt</td>
-                                 <td class="chaps">2</td>
-                                 <td class=""><p>GAMS code for classical ME and CE Including the ME dual case. Compare ME and CE for uniform and for correct priors as well as for incorrect priors. Compare dual and primal (look at shadow "prices" - moments.m, as well as speed of convergence and resources used. </p>
-            
-                                     <p><strong>NOTE</strong>: Can generate monotonically increasing/decreasing prob dist and X's</p>
-                                     <p><strong>NOTE</strong>: Plots up to 20 observations</p>
-                                 </td>
+                                 <td class="keys">matrix, markov</td>
+                                 <td class="chaps">9</td>
+                                 <td>Matrix balancing example 3</td>
                              </tr>
             
                              <tr>
-                                 <td class="name"><a href="codes/beer_example.py">beer_example.py</a></td>
-                                 <td class="lang">Python</td>
+                                 <td class="name"><a href="assets/code_examples/dice two mean.do">dice two mean.do</a></td>
+                                 <td class="lang">Stata</td>
+                                 <td class="keys">noise, dice, two means, stochastic moments</td>
+                                 <td class="chaps">9</td>
+                                 <td>Dice example with two means (noisy/stochastic moments) in Stata.</td>
+                             </tr>
+            
+                             <tr>
+                                 <td class="name"><a href="assets/code_examples/two mean dice loop.gms">two mean dice loop.gms</a></td>
+                                 <td class="lang">GAMS</td>
+                                 <td class="keys">noise, dice, two means, stochastic moments</td>
+                                 <td class="chaps">9</td>
+                                 <td>Dice example with two means (programmed using GAMS loop functionality)</td>
+                             </tr>
+            
+                             <tr>
+                                 <td class="name"><a href="assets/code_examples/two mean dice.gms">two mean dice.gms</a></td>
+                                 <td class="lang">GAMS</td>
+                                 <td class="keys">noise, dice, two means, stochastic moments</td>
+                                 <td class="chaps">9</td>
+                                 <td>Dice example with two means in GAMS.</td>
+                             </tr>
+            
+                             <tr>
+                                 <td class="name"><a href="assets/code_examples/Weighted.gms">Weighted.gms</a></td>
+                                 <td class="lang">GAMS</td>
                                  <td class="keys"></td>
                                  <td class="chaps">14</td>
-                                 <td class=""></td>
+                                 <td></td>
                              </tr>
+            
                              <tr>
-                                 <td class="name"><a href="codes/entropy_function.py">entropy_function.py</a></td>
-                                 <td class="lang">Python</td>
-                                 <td class="keys">visualization, basic examples</td>
-                                 <td class="chaps">2,3</td>
-                                 <td>Explore the properties of the Entropy function graphically.</td>
-                             </tr>
-                             <tr>
-                                 <td class="name"><a href="code/firm_size_distribution.html">Firm Size Distribution</a></td>
-                                 <td class="lang">Matlab</td>
-                                 <td class="keys">empirical</td>
-                                 <td class="chaps">5</td>
-                                 <td>Distribution of firm sizes based on industry input/output.</td>
-                             </tr>
-                             <tr>
-                                 <td class="name"><a href="code/simplex_viz.html">Entropy function simplex visualization</a></td>
-                                 <td class="lang">Matlab</td>
-                                 <td class="keys">visualization,theoretical</td>
-                                 <td class="chaps">4</td>
-                                 <td>Visualization of the entropy function on a 3D simplex</td>
-                             </tr>
-                             <tr>
-                                 <td class="name"><a href="code/portfolio_toolkit.html">Portfolio optimization toolbox</a></td>
-                                 <td class="lang">Matlab</td>
-                                 <td class="keys">empirical</td>
-                                 <td class="chaps">5</td>
-                                 <td>A portfolio optimization toolbox.  Includes Traditional Portfolio Optimization, Generalized Cross-entropy based Portfolio Optimization, Visualization, Performance Comparison</td>
-                             </tr>
-                             <tr>
-                                 <td class="name"><a href="code/income_distribution.html">Income Distribution</a></td>
-                                 <td class="lang">Python</td>
-                                 <td class="keys">empirical</td>
-                                 <td class="chaps">5</td>
-                                 <td>Estimate the income distribution of the population
-                                     based on tax brackets.</td>
-                                 </tr>
-                                 <tr>
-                                     <td class="name"><a href="codes/projects/grouping_property.zip">Grouping Property</a></td>
-                                     <td class="lang">Excel</td>
-                                     <td class="keys">dice,grouping property</td>
-                                     <td class="chaps">4</td>
-                                     <td>Use Excel to explore the grouping property for a
-                                         2 dice example. (Please see the included README file
-                                         to see how to set up Excel to run the example.)<br/>
-                                         <strong>Contributed by Adam Ackerman</strong></td>
-                                     </tr>
-                                 </tbody>
-                             </table>
-                         </div>
+                               <td class="name"><a href="assets/code_examples/dual_classical.py">dual_classical.py</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys">basic examples, classical, concentrated, dual</td>
+                               <td class="chaps">4</td>
+                               <td class="">Optimize the dual concentrated maximum entropy objective.</td>
+                           </tr>
             
-                         <h4 id="requirements">Requirements</h4>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/matrix_balancing.py">matrix_balancing.py</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys">matrix balancing, markov process</td>
+                               <td class="chaps">9</td>
+                               <td class="">Classical ME CE and Dual formulations for the Matrix Balancing problem: y=Ax where A is a K by K matrix and coefficients of each one of the K columns sum up to 1 (i.e., proper distribution). Example 1: an 11 by 11 SAM of the US Comparing the primal and concentrated (dual) models Try with the given priors and with uniform priors</td>
+                           </tr>
             
-                         <p>This section describes how to set up your computer to run the code
-                            examples.  The examples are written in several languages. Please select
-                            the language below to get details about how to set up your computer
-                            to run the code examples written in that language.</p>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/Primal-Taylor.gms">Primal-Taylor.gms</a></td>
+                               <td class="lang">GAMS</td>
+                               <td class="keys">curvature</td>
+                               <td class="chaps">14</td>
+                               <td class=""></td>
+                           </tr>
             
-                            <ul>
-                             <li><a href="#gams">GAMS</a></li>
-                             <li><a href="#limdep">NLOGIT</a></li>
-                             <li><a href="#python">Python</a></li>
-                             <li><a href="#sas">SAS</a></li>
-                             <li><a href="#stata">Stata</a></li>
-                             <li><a href="#excel">Excel</a></li>
-                             <li><a href="#matlab">Matlab</a></li>
-                         </ul>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/primal_classical.py">primal_classical.py</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys">basic examples, classical</td>
+                               <td class="chaps">4</td>
+                               <td class="">Maximize the classical maximum entropy objective function.</td>
+                           </tr>
             
-                         <h5 id="gams">GAMS</h5>
-                         <p>The <a href="http://gams.com">General Algebraic Modeling System (GAMS)</a> is a proprietary software package that provides a high-level modeling system for mathematical programming and optimization. GAMS code is provided for many of the examples in the text.</p>
-                         <p>Information about GAMS, including installation instructions and a users guide can be found <a href="http://www.gams.com/help/index.jsp">here</a>.</p>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/centropy hessian.gms">centropy hessian.gms</a></td>
+                               <td class="lang">GAMS</td>
+                               <td class="keys">hessian, curvature, classical MaxEnt, CrossEnt</td>
+                               <td class="chaps">2</td>
+                               <td class=""><p>GAMS code for classical ME and CE Including the ME dual case. Compare ME and CE for uniform and for correct priors as well as for incorrect priors. Compare dual and primal (look at shadow "prices" - moments.m, as well as speed of convergence and resources used. </p>
             
-                         <h5 id="limdep">LIMDEP/NLOGIT</h5>
-                         <p><a href="http://www.limdep.com/">LIMDEP</a> is a complete econometrics and statistics software package. LIMDEP code is provided for some examples in the text.</p>
+                                   <p><strong>NOTE</strong>: Can generate monotonically increasing/decreasing prob dist and X's</p>
+                                   <p><strong>NOTE</strong>: Plots up to 20 observations</p>
+                               </td>
+                           </tr>
             
-                         <h5 id="python">Python</h5>
-                         <!--TODO: Mention Gohlke's Binaries, OSX note-->
-                         <p>Python is a general purpose, high-level programming language.
-                            We support Python 2.7 - 3.4. For more information
-                            about Python language visit the
-                            <a href="https://www.python.org/">Official Python Site</a></p>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/beer_example.py">beer_example.py</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys"></td>
+                               <td class="chaps">14</td>
+                               <td class=""></td>
+                           </tr>
+                           <tr>
+                               <td class="name"><a href="assets/code_examples/entropy_function.py">entropy_function.py</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys">visualization, basic examples</td>
+                               <td class="chaps">2,3</td>
+                               <td>Explore the properties of the Entropy function graphically.</td>
+                           </tr>
+                           <tr>
+                               <td class="name"><a href="code/firm_size_distribution.html">Firm Size Distribution</a></td>
+                               <td class="lang">Matlab</td>
+                               <td class="keys">empirical</td>
+                               <td class="chaps">5</td>
+                               <td>Distribution of firm sizes based on industry input/output.</td>
+                           </tr>
+                           <tr>
+                               <td class="name"><a href="code/simplex_viz.html">Entropy function simplex visualization</a></td>
+                               <td class="lang">Matlab</td>
+                               <td class="keys">visualization,theoretical</td>
+                               <td class="chaps">4</td>
+                               <td>Visualization of the entropy function on a 3D simplex</td>
+                           </tr>
+                           <tr>
+                               <td class="name"><a href="code/portfolio_toolkit.html">Portfolio optimization toolbox</a></td>
+                               <td class="lang">Matlab</td>
+                               <td class="keys">empirical</td>
+                               <td class="chaps">5</td>
+                               <td>A portfolio optimization toolbox.  Includes Traditional Portfolio Optimization, Generalized Cross-entropy based Portfolio Optimization, Visualization, Performance Comparison</td>
+                           </tr>
+                           <tr>
+                               <td class="name"><a href="code/income_distribution.html">Income Distribution</a></td>
+                               <td class="lang">Python</td>
+                               <td class="keys">empirical</td>
+                               <td class="chaps">5</td>
+                               <td>Estimate the income distribution of the population
+                                   based on tax brackets.</td>
+                               </tr>
+                               <tr>
+                               <td class="name"><a href="code/grouping_property.html">Grouping Property</a></td>
+                                   <td class="lang">Excel</td>
+                                   <td class="keys">dice,grouping property</td>
+                                   <td class="chaps">4</td>
+                                   <td>Use Excel to explore the grouping property for a
+                                       2 dice example. (Please see the included README file
+                                       to see how to set up Excel to run the example.)<br/>
+                                   </td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
             
-                            <p>You will need the python laguage interpreter and several packages in
-                                order to run the examples.  If you are new to python, the easiest
-                                way to get started is by installing one of several Python Distributions.</p>
+                   <h4 id="requirements">Requirements</h4>
             
-                                <h6>Python Distributions</h6>
-                                <p>New to Python? Try a Python distribution already set up for scientific computing.</p>
-                                <ul>
-                                   <li><a href="http://continuum.io/downloads">Anaconda</a> from <a href="http://continuum.io/">Continuum</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
-                                   <li><a href="https://www.enthought.com/products/canopy/">Canopy</a> from <a href="https://www.enthought.com/">Enthought</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
-                                   <li><a href="https://code.google.com/p/pythonxy/">Python(x,y)</a> <i class="fa fa-windows fa-lg"></i></li>
-                               </ul>
+                   <p>This section describes how to set up your computer to run the code
+                    examples.  The examples are written in several languages. Please select
+                    the language below to get details about how to set up your computer
+                    to run the code examples written in that language.</p>
+            
+                    <ul>
+                       <li><a href="#gams">GAMS</a></li>
+                       <li><a href="#limdep">NLOGIT</a></li>
+                       <li><a href="#python">Python</a></li>
+                       <li><a href="#sas">SAS</a></li>
+                       <li><a href="#stata">Stata</a></li>
+                       <li><a href="#excel">Excel</a></li>
+                       <li><a href="#matlab">Matlab</a></li>
+                   </ul>
+            
+                   <h5 id="gams">GAMS</h5>
+                   <p>The <a href="http://gams.com">General Algebraic Modeling System (GAMS)</a> is a proprietary software package that provides a high-level modeling system for mathematical programming and optimization. GAMS code is provided for many of the examples in the text.</p>
+                   <p>Information about GAMS, including installation instructions and a users guide can be found <a href="http://www.gams.com/help/index.jsp">here</a>.</p>
+            
+                   <h5 id="limdep">LIMDEP/NLOGIT</h5>
+                   <p><a href="http://www.limdep.com/">LIMDEP</a> is a complete econometrics and statistics software package. LIMDEP code is provided for some examples in the text.</p>
+            
+                   <h5 id="python">Python</h5>
+                   <!--TODO: Mention Gohlke's Binaries, OSX note-->
+                   <p>Python is a general purpose, high-level programming language.
+                    We support Python 2.7 - 3.4. For more information
+                    about Python language visit the
+                    <a href="https://www.python.org/">Official Python Site</a></p>
+            
+                    <p>You will need the python laguage interpreter and several packages in
+                        order to run the examples.  If you are new to python, the easiest
+                        way to get started is by installing one of several Python Distributions.</p>
+            
+                        <h6>Python Distributions</h6>
+                        <p>New to Python? Try a Python distribution already set up for scientific computing.</p>
+                        <ul>
+                         <li><a href="http://continuum.io/downloads">Anaconda</a> from <a href="http://continuum.io/">Continuum</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
+                         <li><a href="https://www.enthought.com/products/canopy/">Canopy</a> from <a href="https://www.enthought.com/">Enthought</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
+                         <li><a href="https://code.google.com/p/pythonxy/">Python(x,y)</a> <i class="fa fa-windows fa-lg"></i></li>
+                     </ul>
             
             
-                               <h6>Python Package Resources</h6>
-                               <p>Already have Python installed? You can install additional packages from these resources.</p>
-                               <ul>
-                                 <li>Install from <a href="https://pypi.python.org/pypi">PyPI - The Python Package Index</a> using <a href="http://pip.readthedocs.org/en/latest/user_guide.html">pip</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
-                                 <li><a href="http://neuro.debian.net/">Neurodebian Repository</a> <i class="fa fa-linux fa-lg"></i></li>
-                                 <li><a href="https://fonnesbeck.github.io/ScipySuperpack/">SciPy Superpack</a> <i class="fa fa-apple fa-lg"></i></li>
-                                 <li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Unofficial Windows Binaries</a> <i class="fa fa-windows fa-lg"></i></li>
-                             </ul>
+                     <h6>Python Package Resources</h6>
+                     <p>Already have Python installed? You can install additional packages from these resources.</p>
+                     <ul>
+                       <li>Install from <a href="https://pypi.python.org/pypi">PyPI - The Python Package Index</a> using <a href="http://pip.readthedocs.org/en/latest/user_guide.html">pip</a> <i class="fa fa-windows fa-lg"></i> <i class="fa fa-apple fa-lg"></i> <i class="fa fa-linux fa-lg"></i></li>
+                       <li><a href="http://neuro.debian.net/">Neurodebian Repository</a> <i class="fa fa-linux fa-lg"></i></li>
+                       <li><a href="https://fonnesbeck.github.io/ScipySuperpack/">SciPy Superpack</a> <i class="fa fa-apple fa-lg"></i></li>
+                       <li><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">Unofficial Windows Binaries</a> <i class="fa fa-windows fa-lg"></i></li>
+                   </ul>
             
-                             <h6>IPython Notebooks</h6>
-                             <p>The <a href="http://ipython.org/notebook.html">IPython notebook</a> is a web-based interactive computational environment that allows you to combine code, text, math markup, and plots provided as part of the <a href="http://ipython.org/">IPython</a> project. The Python code examples from the text are provided as IPython notebooks.</p>
+                   <h6>IPython Notebooks</h6>
+                   <p>The <a href="http://ipython.org/notebook.html">IPython notebook</a> is a web-based interactive computational environment that allows you to combine code, text, math markup, and plots provided as part of the <a href="http://ipython.org/">IPython</a> project. The Python code examples from the text are provided as IPython notebooks.</p>
             
-                             <ul>
-                              <li><a href="http://ipython.org/ipython-doc/stable/notebook/notebook.html">Notebooks Introduction and Getting Started</a></li>
-                          </ul>
+                   <ul>
+                      <li><a href="http://ipython.org/ipython-doc/stable/notebook/notebook.html">Notebooks Introduction and Getting Started</a></li>
+                  </ul>
             
-                          <h5 id="stata">Stata</h5>
-                          <p><a href="http://www.stata.com">Stata</a> code for binary, multinomial and linear regression are available through the Statistical Software Components (SSC) Archive.  The relevant programs can be installed by issuing the following commands:
-                            <pre>
-                                ssc install gmentropylogit
-                                ssc install gmemultinomial
-                                ssc install gmentropylinear
-                            </pre>
+                  <h5 id="stata">Stata</h5>
+                  <p><a href="http://www.stata.com">Stata</a> code for binary, multinomial and linear regression are available through the Statistical Software Components (SSC) Archive.  The relevant programs can be installed by issuing the following commands:
+                    <pre>
+                        ssc install gmentropylogit
+                        ssc install gmemultinomial
+                        ssc install gmentropylinear
+                    </pre>
             
-                            <h5 id="sas">SAS</h5>
-                            <p>The <a href="">Statistical Analysis System (SAS)</a> provides the <a href="http://support.sas.com/documentation/cdl/en/etsug/60372/HTML/default/viewer.htm#entropy_toc.htm">ENTROPY procedure</a> for fitting many types of generalized maximum entropy models. Some SAS code is provided for examples in the text.</p>
+                    <h5 id="sas">SAS</h5>
+                    <p>The <a href="">Statistical Analysis System (SAS)</a> provides the <a href="http://support.sas.com/documentation/cdl/en/etsug/60372/HTML/default/viewer.htm#entropy_toc.htm">ENTROPY procedure</a> for fitting many types of generalized maximum entropy models. Some SAS code is provided for examples in the text.</p>
             
-                            <p>Detailed guidance about the entropy procedure can be found <a href="https://support.sas.com/documentation/onlinedoc/ets/132/entropy.pdf">here</a></p>
+                    <p>Detailed guidance about the entropy procedure can be found <a href="https://support.sas.com/documentation/onlinedoc/ets/132/entropy.pdf">here</a></p>
             
-                            <h5 id="excel">Excel</h5>
-                            <p>
-                                In order to run the examples, you will need to enable up the solver.  You can find instructions on how to set up the solver <a href="code/README.txt">here</a>.
-                            </p>
+                    <h5 id="excel">Excel</h5>
+                    <p>
+                        In order to run the examples, you will need to enable up the solver.  You can find instructions on how to set up the solver <a href="code/README.txt">here</a>.
+                    </p>
             
-                            <h5 id="matlab">Matlab</h5>
-                            Instructions on how to install Matlab on your system can be found on the Mathworks website: <a href="https://www.mathworks.com/">https://www.mathworks.com/</a>.  Some individual Matlab examples have corresponding Readme files.  Please be sure to read these first before executing the code.
+                    <h5 id="matlab">Matlab</h5>
+                    Instructions on how to install Matlab on your system can be found on the Mathworks website: <a href="https://www.mathworks.com/">https://www.mathworks.com/</a>.  Some individual Matlab examples have corresponding Readme files.  Please be sure to read these first before executing the code.
             
-                            <!-- TODO: what exactly is available from nlogit/limdep? <h3>NLOGIT</h3> -->
+                    <!-- TODO: what exactly is available from nlogit/limdep? <h3>NLOGIT</h3> -->
             
-                            <h4 id="other_resources">Other Resources</h4>
+                    <h4 id="other_resources">Other Resources</h4>
             
-                            Ximing Wu maintains a list of software resources for Info-Metrics <a href="https://www.american.edu/cas/economics/info-metrics/software.cfm">here</a>. These include <a href="http://cran.r-project.org/">R</a> packages and scripts for <a href="www.mathworks.com/products/matlab/">MATLAB</a>.
+                    Ximing Wu maintains a list of software resources for Info-Metrics <a href="https://www.american.edu/cas/economics/info-metrics/software.cfm">here</a>. These include <a href="http://cran.r-project.org/">R</a> packages and scripts for <a href="www.mathworks.com/products/matlab/">MATLAB</a>.
             
-                            <h4 id="contriburing">Contributing</h4>
+                    <h4 id="contriburing">Contributing</h4>
             
-                            Once you have a GitHub account, you can submit, correct, or improve any of the code distributed through a <a href="https://help.github.com/articles/using-pull-requests">Pull Request</a>. We welcome any and all contributions.
-                        </p>
+                    Once you have a GitHub account, you can submit, correct, or improve any of the code distributed through a <a href="https://help.github.com/articles/using-pull-requests">Pull Request</a>. We welcome any and all contributions.
+                </p>
             
         </div>
     </div>
@@ -615,5 +613,8 @@
     </footer>
     
     <script src="assets/js/app.js"></script>
+    
+
+        <script src="assets/js/single-page/list.js"></script>
   </body>
 </html>

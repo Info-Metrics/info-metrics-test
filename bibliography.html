@@ -10,8 +10,8 @@
   </head>
   <body>
 
-    
-        <div class="top-bar">
+    <div data-sticky-container>
+        <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
           <div class="top-bar-title">
               <a href="#">Foundations of Info-Metrics</a>
           </div>
@@ -19,7 +19,7 @@
             <div class="top-bar-left">
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
+                <ul class="menu" data-accordion-menu>
                     <li>
                         <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
                     </li>
@@ -30,11 +30,11 @@
             </div>
           </div>
         </div>
-    
+    </div>
     <div class="row">
         <div class="column small-12 medium-3">
             <nav>
-                <ul class="menu vertical">
+                <ul class="menu vertical" data-accordion>
                     <li >
                         <a href="/index.html">Home</a></li>
                     <li >
@@ -9316,5 +9316,7 @@
     </footer>
     
     <script src="assets/js/app.js"></script>
+    
+
   </body>
 </html>

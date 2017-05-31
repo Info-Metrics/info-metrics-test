@@ -10,8 +10,8 @@
   </head>
   <body>
 
-    
-        <div class="top-bar">
+    <div data-sticky-container>
+        <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
           <div class="top-bar-title">
               <a href="#">Foundations of Info-Metrics</a>
           </div>
@@ -19,7 +19,7 @@
             <div class="top-bar-left">
             </div>
             <div class="top-bar-right">
-                <ul class="menu">
+                <ul class="menu" data-accordion-menu>
                     <li>
                         <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
                     </li>
@@ -30,11 +30,11 @@
             </div>
           </div>
         </div>
-    
+    </div>
     <div class="row">
         <div class="column small-12 medium-3">
             <nav>
-                <ul class="menu vertical">
+                <ul class="menu vertical" data-accordion>
                     <li  class="active" >
                         <a href="/index.html">Home</a></li>
                     <li >
@@ -60,11 +60,11 @@
         <div class="column small-12 medium-9">
             <header>
                 <h1 class="title">Foundations of Info-Metrics</h1>
-                <p class="subtitle">Modeling, Inference and Imperfect Information</p>
+                <h2>Modeling, Inference and Imperfect Information</h2>
                 <p class="callout blurb">
                     Info-metrics is the science of modeling, reasoning, and drawing inferences under conditions of noisy and insufficient information. The Foundations of Info-Metrics examines the theoretical underpinning of info-metrics and provides extensive interdisciplinary applications.
                 </p>
-                <p class="subtitle">Oxford University Press (coming Fall 2017)</p>
+                <h2 class="subtitle">Oxford University Press (coming Fall 2017)</h2>
                 <hr>
             </header>
             
@@ -74,6 +74,9 @@
             
             <section class="examples">
                 <h3>Some examples from the book</h3>
+                
+                    <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                    <button class="w3-button w3-black" onclick="plusDivs(+1)">&#10095;</button>
                 <div class="row">
                     <div class="column small-12 mySlides">
                         <a href="/assets/img/ch5_fig4.png" class="thumbnail"><img src="/assets/img/ch5_fig4.png" /></a>
@@ -113,9 +116,6 @@
                             </p>
                         </div>
                     </div>
-                    <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
-                    <button class="w3-button w3-black" onclick="plusDivs(+1)">&#10095;</button>
-            
             </section>
             
         </div>
@@ -124,5 +124,9 @@
     </footer>
     
     <script src="assets/js/app.js"></script>
+    
+        <script src="assets/js/single-page/magnific-popup.js"></script>
+        <script src="assets/js/single-page/slideshow.js"></script>
+
   </body>
 </html>
