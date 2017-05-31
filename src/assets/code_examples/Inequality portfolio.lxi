@@ -1,0 +1,25 @@
+B 2 C o m p i l a t i o n
+B 98 E x e c u t i o n
+I 99 sigma
+B 107 Equation Listing    SOLVE Uno Using NLP From line 80
+D 108 object_me
+D 116 proper_prob
+D 123 moments
+D 130 covar
+B 138 Column Listing      SOLVE Uno Using NLP From line 80
+E 139 p
+E 164 obj
+B 173 Model Statistics    SOLVE Uno Using NLP From line 80
+B 191 Solution Report     SOLVE Uno Using NLP From line 80
+F 231 object_me
+F 232 proper_prob
+F 241 moments
+F 247 covar
+G 248 p
+G 256 obj
+B 270 E x e c u t i o n
+I 271 phat
+I 277 muhat
+I 282 sigmahat
+I 287 sigma
+I 292 mu0

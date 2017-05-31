@@ -23,5 +23,14 @@
     </div>
     {{> footer}}
     <script src="{{root}}assets/js/app.js"></script>
+    
+    {{#ifpage 'index'}}
+        <script src="{{root}}assets/js/single-page/magnific-popup.js"></script>
+        <script src="{{root}}assets/js/single-page/slideshow.js"></script>
+    {{/ifpage}}
+
+    {{#ifpage 'code'}}
+        <script src="{{root}}assets/js/single-page/list.js"></script>
+    {{/ifpage}}
   </body>
 </html>

@@ -1,0 +1,311 @@
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  **** Model replication of Optimal Portfolio Diversification Using the Maxi
+      mum
+   2  **** Entropy Principle by Bera, A.K. and Park, S.Y.
+   3  ** Inequality portfolio, this file corresponds to the model in 493, eq. 12
+   4   
+   5  set      i   Portfolios           /health, utility, other/
+   6           k   # of observations    /1*1/
+   7  ;
+   8  alias (j,i);
+   9   
+  10  parameter    phat(i)      estimated shares
+  11               muhat(k)
+  12               sigmahat(k)
+  13               mu0(k)       Portfolio mean
+  14               sd(k)        Standard deviation of asset returns
+  15               return(k,i)  Return on asset
+  16               q(i)         Priors
+  17               cov(i,i)     Covarianve matrix
+  18               sigma(k)     SD
+  19   
+  20   
+  21   
+  22   
+  23  ;
+  24   
+  25  return(k, "health")  =  1.551 ;
+  26  return(k, "utility") =  1.156 ;
+  27  return(k, "other")   =  1.215 ;
+  28   
+  29  **** Priors
+  30  q(i)                 = 1/card(i);
+  31   
+  32  *** Mean of portfolio
+  33  mu0(k)               =  1.35   ;
+  34   
+  35  *** Cov matrix of different investment options
+  36  table cov(i,i) covariance matrix
+  37   
+  38                   health    utility  other
+  39  health           57.298    12.221   33.026
+  40  utility          12.221    13.168   11.814
+  41  other            33.026    11.814   27.952 ;
+  42   
+  43  *****
+  44  sigma(k)   =   sqrt(sum(i,sum(j,q(i)*q(j)*cov(i,j))))
+  45  *sigma(k) = 3.9408451
+  46   
+  47   
+  48  display sigma;
+  49   
+  50   
+  51  positive variables
+  52         p(i) estimated probabilities
+  53   
+  54  ;
+  55   
+  56  variables
+  57          obj  objective function
+  58  ;
+  59   
+  60  equations
+  61   
+  62  object_me   ME objective function
+  63  object_ce   CE objective function
+  64  proper_prob The proper prob requirement - normalization
+  65  moments(k)  The data points - observed moments
+  66  covar(k)  The data points - observed covariance
+  67  ;
+  68   
+  69  object_me..  obj =e= - sum(i,p(i)*log((p(i)+1.e-8)));
+  70  proper_prob.. sum(i,p(i)) =e= 1;
+  71  moments(k)..  mu0(k) =l= sum(i,return(k,i)*p(i));
+  72  covar(k)..  sigma(k) =g= sqrt(sum(i,sum(j,p(i)*p(j)*cov(i,j))));
+  73   
+  74  model Uno /object_me
+  75             proper_prob
+  76             moments
+  77             covar
+  78  /;
+  79   
+  80  solve Uno maximizing obj using nlp;
+  81   
+  82  phat(i) = p.l(i)  ;
+  83  muhat(k)= sum(i,return(k,i)*p.l(i));
+  84  sigmahat(k)= sqrt(sum(i,sum(j,p.l(i)*p.l(j)*cov(i,j)))) ;
+  85   
+  86  display phat,muhat ,sigmahat, sigma, mu0;
+  87   
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  24.3.3 r48116 WEX-WEI
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     48 PARAMETER sigma  SD
+
+1 4.860
+
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE Uno Using NLP From line 80
+
+
+---- object_me  =E=  ME objective function
+
+object_me..  - (18.4206807439524)*p(health) - (18.4206807439524)*p(utility)
+     
+      - (18.4206807439524)*p(other) + obj =E= 0 ; (LHS = 0)
+     
+
+---- proper_prob  =E=  The proper prob requirement - normalization
+
+proper_prob..  p(health) + p(utility) + p(other) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+
+---- moments  =L=  The data points - observed moments
+
+moments(1)..  - 1.551*p(health) - 1.156*p(utility) - 1.215*p(other) =L= -1.35 ;
+     
+      (LHS = 0, INFES = 1.35 ****)
+     
+
+---- covar  =G=  The data points - observed covariance
+
+covar(1)..  (0)*p(health) + (0)*p(utility) + (0)*p(other) =G= -4.85958388707876
+      ; (LHS = 0)
+     
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE Uno Using NLP From line 80
+
+
+---- p  estimated probabilities
+
+p(health)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     (-18.4207) object_me
+        1       proper_prob
+       -1.551   moments(1)
+       (0)      covar(1)
+
+p(utility)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     (-18.4207) object_me
+        1       proper_prob
+       -1.156   moments(1)
+       (0)      covar(1)
+
+p(other)
+                (.LO, .L, .UP, .M = 0, 0, +INF, 0)
+     (-18.4207) object_me
+        1       proper_prob
+       -1.215   moments(1)
+       (0)      covar(1)
+
+
+---- obj  objective function
+
+obj
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       object_me
+
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE Uno Using NLP From line 80
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS            4
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            4
+NON ZERO ELEMENTS            13     NON LINEAR N-Z              6
+DERIVATIVE POOL              10     CONSTANT POOL              23
+CODE LENGTH                  50
+
+
+GENERATION TIME      =        0.015 SECONDS      4 MB  24.3.3 r48116 WEX-WEI
+
+
+EXECUTION TIME       =        0.015 SECONDS      4 MB  24.3.3 r48116 WEX-WEI
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE Uno Using NLP From line 80
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   Uno                 OBJECTIVE  obj
+     TYPE    NLP                 DIRECTION  MAXIMIZE
+     SOLVER  CONOPT              FROM LINE  80
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      2 Locally Optimal           
+**** OBJECTIVE VALUE                0.7820
+
+ RESOURCE USAGE, LIMIT          0.000      1000.000
+ ITERATION COUNT, LIMIT         4    2000000000
+ EVALUATION ERRORS              0             0
+CONOPT 3         24.3.3 r48116 Released Sep 19, 2014 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.16C
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+    The model has 4 variables and 4 constraints
+    with 13 Jacobian elements, 6 of which are nonlinear.
+    The Hessian of the Lagrangian has 3 elements on the diagonal,
+    3 elements below the diagonal, and 3 nonlinear variables.
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+ 
+ CONOPT time Total                            0.004 seconds
+   of which: Function evaluations             0.000 =  0.0%
+             1st Derivative evaluations       0.002 = 50.0%
+ 
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU object_me       .         .         .        1.000      
+---- EQU proper_pr~     1.000     1.000     1.000    24.365      
+
+  object_me  ME objective function
+  proper_prob  The proper prob requirement - normalization
+
+---- EQU moments  The data points - observed moments
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     -INF     -1.350    -1.350    26.562      
+
+---- EQU covar  The data points - observed covariance
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1    -4.860    -4.860     +INF     -2.320      
+
+---- VAR p  estimated probabilities
+
+           LOWER     LEVEL     UPPER    MARGINAL
+
+health       .        0.488     +INF       .         
+utility      .        0.491     +INF       .         
+other        .        0.021     +INF       .         
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR obj            -INF      0.782     +INF       .         
+
+  obj  objective function
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+GAMS 24.3.3  r48116 Released Sep 19, 2014 WEX-WEI x86 64bit/MS Windows 03/08/17 12:17:34 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     86 PARAMETER phat  estimated shares
+
+health  0.488,    utility 0.491,    other   0.021
+
+
+----     86 PARAMETER muhat  
+
+1 1.350
+
+
+----     86 PARAMETER sigmahat  
+
+1 4.860
+
+
+----     86 PARAMETER sigma  SD
+
+1 4.860
+
+
+----     86 PARAMETER mu0  Portfolio mean
+
+1 1.350
+
+
+
+EXECUTION TIME       =        0.016 SECONDS      3 MB  24.3.3 r48116 WEX-WEI
+
+
+USER: Dept of Economics                              G131209:0355AO-WIN
+      American University                                         DC487
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\aalam\Documents\GitHub\code\Inequality portfolio.gms
+Output     C:\Users\aalam\Documents\GitHub\code\Inequality portfolio.lst

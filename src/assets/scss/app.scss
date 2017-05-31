@@ -50,4 +50,7 @@
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
-@import "custom"
+@import "custom";
+@import "components/main";
+@import "font-awesome";
+

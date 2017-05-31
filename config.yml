@@ -1,5 +1,5 @@
 # Your project's server will run on localhost:xxxx at this port
-PORT: 8000
+PORT: 80
 
 # Autoprefixer will make sure your CSS works with these browsers
 COMPATIBILITY:
@@ -22,11 +22,16 @@ PATHS:
   # Paths to static assets that aren't images, CSS, or JavaScript
   assets:
     - "src/assets/**/*"
-    - "!src/assets/{img,js,scss}/**/*"
+    - "!src/assets/{img,js,scss,fonts}/**/*"
   # Paths to Sass libraries, which can then be loaded with @import
+  fonts:
+    - "src/assets/fonts/*"
+    - "bower_components/font-awesome/fonts/*"
   sass:
     - "bower_components/foundation-sites/scss"
     - "bower_components/motion-ui/src"
+    - "bower_components/font-awesome/scss"
+
   # Paths to JavaScript libraries, which are combined into one file
   javascript:
     # Libraries required by Foundation
@@ -58,5 +63,8 @@ PATHS:
     - "bower_components/foundation-sites/js/foundation.tooltip.js"
     - "bower_components/foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
     # Paths to your own project code are here
-    - "src/assets/js/app.js"
+    - "bower_components/magnific-popup/dist/jquery.magnific-popup.js"
+    - "bower_components/list.js/dist/list.js"
     - "src/assets/js/!(app).js"
+    - "!src/assets/js/single-page/**/*"
+    - "src/assets/js/app.js"
