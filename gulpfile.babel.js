@@ -92,23 +92,9 @@ function sass() {
     .pipe(browser.reload({ stream: true }));
 }
 
-// Combine JavaScript into one file
-// In production, the file is minified
-// function javascript() {
-//   return gulp.src(PATHS.javascript)
-//     .pipe($.sourcemaps.init())
-//     .pipe($.babel({ignore: ['what-input.js']}))
-//     .pipe($.concat('app.js'))
-//     .pipe($.if(PRODUCTION, $.uglify()
-//       .on('error', e => { console.log(e); })
-//     ))
-//     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-//     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
-// }
-
 function javascript() {
   // Insert this section before the return statement
-  gulp.src('src/assets/js/single-page/**/*.js')      
+  gulp.src('src/assets/js/single-page/**/*.js')
   .pipe($.if(PRODUCTION, $.uglify()
     .on('error', e => { console.log(e); })
   ))
