@@ -1,5 +1,7 @@
-.top-bar a {
-    color: $dark-gray;
+.top-bar {
+    a {
+        color: lighten($dark-gray, 25%);
+    }
 }
 
 .top-bar-right li a:hover {
