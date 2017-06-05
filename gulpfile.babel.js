@@ -32,6 +32,11 @@ gulp.task('build',
 gulp.task('default',
   gulp.series('build', server, watch));
 
+gulp.task('deploy', gulp.series('build'), function() {
+     return gulp.src('./dist/**/*')
+        .pipe($.ghPages())
+ });
+
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {
