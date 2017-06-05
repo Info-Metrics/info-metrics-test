@@ -1,1 +1,0 @@
-function plusDivs(e){showDivs(slideIndex+=e)}function showDivs(e){var s,l=document.getElementsByClassName("mySlides");for(e>l.length&&(slideIndex=1),e<1&&(slideIndex=l.length),s=0;s<l.length;s++)l[s].style.display="none";l[slideIndex-1].style.display="block"}var slideIndex=1;showDivs(slideIndex);
