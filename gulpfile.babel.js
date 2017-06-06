@@ -33,14 +33,14 @@ gulp.task('default',
   gulp.series('build', server, watch));
 
 // Build the site and then push to Github
-gulp.task('deploy', gulp.series('build', 'push'));
+gulp.task('deploy', gulp.series('build', push));
 
 // Add CNAME and Push the dist folder to gihub
-function() {
+function push() {
      return gulp.src(['./dist/**/*', './src/CNAME'])
         .pipe($.ghPages())
  }
- 
+
 // Delete the "dist" folder
 // This happens every time a build starts
 function clean(done) {
