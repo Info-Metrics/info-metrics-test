@@ -4,7 +4,7 @@ var options = {
 
 var codeToc = new List('code-toc', options);
 
-codeToc.sort('chaps')
+codeToc.sort('chaps', {alphabet: '2345678901'})
 
 $('.langfilter').click(function() {
     myId = $(this).attr('id')
