@@ -13,6 +13,12 @@
   background-color: $light-gray;
 }
 
+.modal-body {
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+  margin-bottom: 1em;
+}
+
 #toc {
     h1 {
         font-size: 2em;
