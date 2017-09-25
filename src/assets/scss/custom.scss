@@ -48,10 +48,6 @@
     }
 }
 
-p.subtitle {
-    font-size: 2em;
-}
-
 .orbit-previous, .orbit-next {
     color: $black;
 }
@@ -61,8 +57,12 @@ p.subtitle {
 }
 
 .title {
-    font-size: 3rem;
+    font-size: 2rem;
+}
+
+.subtitle {
+    font-size: 1.5rem;
 }
 .publisher {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
