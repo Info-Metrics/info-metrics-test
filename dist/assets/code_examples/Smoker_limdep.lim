@@ -1,0 +1,62 @@
+/* This program creates a LIMDEP project smoking data  IEE class, AU 2008*/
+/* Q.1.	Estimate a probit model with smoker as the dependent variable and the following regressors:  smkban, female, age, age2, hsdrop, hsgrad, colsome, colgrad, black, and hispanic.  
+
+      Q.2.  Estimate a GME (generalized Logit) model using the same regressors as in 1. Compare the marginal effects of the GME and the probit models. (Use 3 support spaces for the errors).
+
+(a) Test the hypothesis that the coefficient on smkban is zero in the population version of the regression in 2, against the alternative that it is nonzero, at the 5% significance level.
+(b) Consider a hypothetical individual, Mr. A, who is white, non-hispanic, 20 years old, and a high school dropout.  Suppose Mr. A is subject to a workplace smoking ban.  Calculate the probability that Mr. A smokes.  Compare the GME and probit predictions.
+*/
+
+/* NOTE: Need to change the following line to the location of the data file on your machine */
+
+Read ; FILE = "E:\Codes - Info-Metrics\Data\smoking.xls"
+     ; Nvar = 10
+     ; Nobs = 10010 
+     ; Names = 1 ? The number of lines used to define the variables' names
+     ; format = xls $
+
+dstat;rhs=* $ 
+
+CREATE ; age_sq  = AGE*AGE $
+
+NAMELIST;XRNA = ONE, smkban, female, age, hsdrop, hsgrad, colsome, colgrad, black, hispanic $
+
+/* Condition number command */
+
+MATRIX ; List ; CNUM( XRNA )$
+
+LOGIT;Lhs=smoker;Rhs=XRNA; Marginal Effects $ 
+
+
+LOGIT;Lhs=smoker;Rhs=XRNA; Prob=Estp; GME=3; Marginal Effects $ 
+
+dstat;rhs=ESTP $
+
+
+/* ER TEST for smkban */
+NAMELIST;XRNA1 = ONE, female, age, hsdrop, hsgrad, colsome, colgrad, black, hispanic $
+LOGIT;Lhs=smoker;Rhs=XRNA1; GME=3$ ? restricted model
+CALC  ; List; LR = LogL $
+NAMELIST;XRNA = ONE, smkban, female, age, hsdrop, hsgrad, colsome, colgrad, black, hispanic $
+LOGIT;Lhs=smoker;Rhs=XRNA; GME=3$ ? unrestricted model
+CALC  ; list; LU = LogL ; C = -2*(LR - LU) $
+
+? Note: the statistics on output provide similar values
+
+? Other t-tests example
+CALC ; List ; tratio = (b(2) - 0) / Sqr(Varb(2,2)) $
+
+probit;Lhs=smoker;Rhs=XRNA; Marginal Effects $ 
+
+
+/* Keep coeff for experiments */
+matrix; GMECOEFF = B $
+
+sample;all $
+INCLUDE; new; ((hispanic = 0)  & (black = 0 ) & (age = 20) & (HSDROP = 1) ) $ 
+
+CALC	; K = Col(XRNA) $
+CREATE	; P0=1/(1+exp(XRNA'B))
+		; P1 = exp(XRNA'B) * P0  $
+
+dstat;rhs=ESTP, p1 $
