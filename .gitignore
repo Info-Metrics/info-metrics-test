@@ -5,3 +5,4 @@ bower_components
 *.swp
 dist/
 *.sublime-project
+*.sublime-workspace
