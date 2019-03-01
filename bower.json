@@ -19,7 +19,8 @@
     "motion-ui": "~1.2.2",
     "magnific-popup": "^1.1.0",
     "list.js": "^1.5.0",
-    "font-awesome": "fontawesome#^4.7.0"
+    "font-awesome": "fontawesome#^4.7.0",
+    "highcharts": "^7.0.3"
   },
   "private": true
 }
