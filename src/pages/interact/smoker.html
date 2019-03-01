@@ -1,0 +1,73 @@
+---
+title: Smoker
+---
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var myChart = 
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Simulated probability of being a smoker for a given set of characteristics'
+    },
+    subtitle: {
+        text: '(Baseline: Male, Age 39, High School Grad, White)'
+    },
+    xAxis: {
+        categories: [
+            'Smoking Ban',
+            'Gender',
+            'Age'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Probability of Being a Smoker'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Baseline',
+        data: [0.39, 0.39, 0.39]
+
+    }, {
+        name: 'Alternate',
+        data: [0.33, 0.28, 0.32]
+
+    }]
+});
+});
+</script>
+
+<header>
+    <h1 class="title">Smoker Probabilities</h1>
+</header>
+
+
+<ul class="tabs" data-tabs id="example-tabs">
+    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Smoking Ban</a></li>
+    <li class="tabs-title"><a href="#panel2">Gender</a></li>
+    <li class="tabs-title"><a href="#panel3">Age</a></li>
+</ul>
+
+<div class="tabs-content" data-tabs-content="example-tabs">
+	<div id="container" style="width:100%; height:400px;"></div>
+</div>
