@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "foundation-sites": "~6.3.0",
+    "foundation-sites": "~6.5.0",
     "motion-ui": "~1.2.2",
     "magnific-popup": "^1.1.0",
     "list.js": "^1.5.0",
