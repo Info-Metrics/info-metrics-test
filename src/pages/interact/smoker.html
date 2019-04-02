@@ -63,11 +63,14 @@ Highcharts.chart('container', {
 
 
 <ul class="tabs" data-tabs id="example-tabs">
-    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Smoking Ban</a></li>
-    <li class="tabs-title"><a href="#panel2">Gender</a></li>
-    <li class="tabs-title"><a href="#panel3">Age</a></li>
+    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Smoker Example</a></li>
 </ul>
 
 <div class="tabs-content" data-tabs-content="example-tabs">
-	<div id="container" style="width:100%; height:400px;"></div>
+    <div class="tabs-panel is-active" id="panel1">
+	   <div id="container" style="width:100%; height:400px;"></div>
+        <p> Info-metrics discrete choice example (for exact specification see Chapter 12). The model predicts the probability of an individual smoking, given their demographic characteristics. A dummy variable representing whether there was a smoking ban at their workplace was included, and the respective marginal effects captured to what degree it induced people to quit, conditional on their demographic characteristics. These estimates can be used to simulate different profiles of people, few of which are shown in the figure.</p>
+
+        <p>The data set used for this estimation is a sample of 10,000 US indoor workers in 1991-1993. The data set contains information on whether individuals were, or were not, subject to a workplace smoking ban, whether or not the individuals smoked, and other individual characteristics. You can find the data in the data section of this webpage.</p>
+    </div>
 </div>
