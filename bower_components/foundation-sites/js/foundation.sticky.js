@@ -1,10 +1,6 @@
 'use strict';
 
-import $ from 'jquery';
-import { onLoad, GetYoDigits } from './foundation.core.utils';
-import { MediaQuery } from './foundation.util.mediaQuery';
-import { Plugin } from './foundation.core.plugin';
-import { Triggers } from './foundation.util.triggers';
+!function($) {
 
 /**
  * Sticky module.
@@ -13,23 +9,20 @@ import { Triggers } from './foundation.util.triggers';
  * @requires foundation.util.mediaQuery
  */
 
-class Sticky extends Plugin {
+class Sticky {
   /**
    * Creates a new instance of a sticky thing.
    * @class
-   * @name Sticky
    * @param {jQuery} element - jQuery object to make sticky.
    * @param {Object} options - options object passed when creating the element programmatically.
    */
-  _setup(element, options) {
+  constructor(element, options) {
     this.$element = element;
     this.options = $.extend({}, Sticky.defaults, this.$element.data(), options);
-    this.className = 'Sticky'; // ie9 back compat
-
-    // Triggers init is idempotent, just need to make sure it is initialized
-    Triggers.init($);
 
     this._init();
+
+    Foundation.registerPlugin(this, 'Sticky');
   }
 
   /**
@@ -38,19 +31,14 @@ class Sticky extends Plugin {
    * @private
    */
   _init() {
-    MediaQuery._init();
-
     var $parent = this.$element.parent('[data-sticky-container]'),
-        id = this.$element[0].id || GetYoDigits(6, 'sticky'),
+        id = this.$element[0].id || Foundation.GetYoDigits(6, 'sticky'),
         _this = this;
 
-    if($parent.length){
-      this.$container = $parent;
-    } else {
+    if (!$parent.length) {
       this.wasWrapped = true;
-      this.$element.wrap(this.options.container);
-      this.$container = this.$element.parent();
     }
+    this.$container = $parent.length ? $parent : $(this.options.container).wrapInner(this.$element);
     this.$container.addClass(this.options.containerClass);
 
     this.$element.addClass(this.options.stickyClass).attr({ 'data-resize': id, 'data-mutate': id });
@@ -60,18 +48,18 @@ class Sticky extends Plugin {
 
     this.scrollCount = this.options.checkEvery;
     this.isStuck = false;
-    this.onLoadListener = onLoad($(window), function () {
+    $(window).one('load.zf.sticky', function(){
       //We calculate the container height to have correct values for anchor points offset calculation.
       _this.containerHeight = _this.$element.css("display") == "none" ? 0 : _this.$element[0].getBoundingClientRect().height;
       _this.$container.css('height', _this.containerHeight);
       _this.elemHeight = _this.containerHeight;
-      if (_this.options.anchor !== '') {
+      if(_this.options.anchor !== ''){
         _this.$anchor = $('#' + _this.options.anchor);
-      } else {
+      }else{
         _this._parsePoints();
       }
 
-      _this._setSizes(function () {
+      _this._setSizes(function(){
         var scroll = window.pageYOffset;
         _this._calc(false, scroll);
         //Unstick the element will ensure that proper classes are set.
@@ -117,7 +105,7 @@ class Sticky extends Plugin {
   /**
    * Adds event handlers for the scrolling element.
    * @private
-   * @param {String} id - pseudo-random id for unique scroll event listener.
+   * @param {String} id - psuedo-random id for unique scroll event listener.
    */
   _events(id) {
     var _this = this,
@@ -158,7 +146,7 @@ class Sticky extends Plugin {
   /**
    * Handler for events.
    * @private
-   * @param {String} id - pseudo-random id for unique scroll event listener.
+   * @param {String} id - psuedo-random id for unique scroll event listener.
    */
   _eventsHandler(id) {
        var _this = this,
@@ -305,7 +293,7 @@ class Sticky extends Plugin {
    * @private
    */
   _setSizes(cb) {
-    this.canStick = MediaQuery.is(this.options.stickyOn);
+    this.canStick = Foundation.MediaQuery.is(this.options.stickyOn);
     if (!this.canStick) {
       if (cb && typeof cb === 'function') { cb(); }
     }
@@ -388,7 +376,7 @@ class Sticky extends Plugin {
    * Removes event listeners, JS-added css properties and classes, and unwraps the $element if the JS added the $container.
    * @function
    */
-  _destroy() {
+  destroy() {
     this._removeSticky(true);
 
     this.$element.removeClass(`${this.options.stickyClass} is-anchored is-at-top`)
@@ -403,8 +391,7 @@ class Sticky extends Plugin {
     if (this.$anchor && this.$anchor.length) {
       this.$anchor.off('change.zf.sticky');
     }
-    if (this.scrollListener) $(window).off(this.scrollListener)
-    if (this.onLoadListener) $(window).off(this.onLoadListener)
+    $(window).off(this.scrollListener);
 
     if (this.wasWrapped) {
       this.$element.unwrap();
@@ -414,6 +401,7 @@ class Sticky extends Plugin {
                        height: ''
                      });
     }
+    Foundation.unregisterPlugin(this);
   }
 }
 
@@ -505,4 +493,7 @@ function emCalc(em) {
   return parseInt(window.getComputedStyle(document.body, null).fontSize, 10) * em;
 }
 
-export {Sticky};
+// Window exports
+Foundation.plugin(Sticky, 'Sticky');
+
+}(jQuery);

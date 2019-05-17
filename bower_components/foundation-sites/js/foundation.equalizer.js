@@ -1,33 +1,29 @@
 'use strict';
 
-import $ from 'jquery';
-import { MediaQuery } from './foundation.util.mediaQuery';
-import { onImagesLoaded } from './foundation.util.imageLoader';
-import { GetYoDigits } from './foundation.core.utils';
-import { Plugin } from './foundation.core.plugin';
+!function($) {
 
 /**
  * Equalizer module.
  * @module foundation.equalizer
  * @requires foundation.util.mediaQuery
- * @requires foundation.util.imageLoader if equalizer contains images
+ * @requires foundation.util.timerAndImageLoader if equalizer contains images
  */
 
-class Equalizer extends Plugin {
+class Equalizer {
   /**
    * Creates a new instance of Equalizer.
    * @class
-   * @name Equalizer
    * @fires Equalizer#init
    * @param {Object} element - jQuery object to add the trigger to.
    * @param {Object} options - Overrides to the default plugin settings.
    */
-  _setup(element, options){
+  constructor(element, options){
     this.$element = element;
     this.options  = $.extend({}, Equalizer.defaults, this.$element.data(), options);
-    this.className = 'Equalizer'; // ie9 back compat
 
     this._init();
+
+    Foundation.registerPlugin(this, 'Equalizer');
   }
 
   /**
@@ -38,11 +34,9 @@ class Equalizer extends Plugin {
     var eqId = this.$element.attr('data-equalizer') || '';
     var $watched = this.$element.find(`[data-equalizer-watch="${eqId}"]`);
 
-    MediaQuery._init();
-
     this.$watched = $watched.length ? $watched : this.$element.find('[data-equalizer-watch]');
-    this.$element.attr('data-resize', (eqId || GetYoDigits(6, 'eq')));
-    this.$element.attr('data-mutate', (eqId || GetYoDigits(6, 'eq')));
+    this.$element.attr('data-resize', (eqId || Foundation.GetYoDigits(6, 'eq')));
+	this.$element.attr('data-mutate', (eqId || Foundation.GetYoDigits(6, 'eq')));
 
     this.hasNested = this.$element.find('[data-equalizer]').length > 0;
     this.isNested = this.$element.parentsUntil(document.body, '[data-equalizer]').length > 0;
@@ -60,9 +54,9 @@ class Equalizer extends Plugin {
     }else{
       this._events();
     }
-    if((typeof tooSmall !== 'undefined' && tooSmall === false) || typeof tooSmall === 'undefined'){
+    if((tooSmall !== undefined && tooSmall === false) || tooSmall === undefined){
       if(imgs.length){
-        onImagesLoaded(imgs, this._reflow.bind(this));
+        Foundation.onImagesLoaded(imgs, this._reflow.bind(this));
       }else{
         this._reflow();
       }
@@ -119,7 +113,7 @@ class Equalizer extends Plugin {
    * @private
    */
   _checkMQ() {
-    var tooSmall = !MediaQuery.is(this.options.equalizeOn);
+    var tooSmall = !Foundation.MediaQuery.is(this.options.equalizeOn);
     if(tooSmall){
       if(this.isOn){
         this._pauseEvents();
@@ -282,9 +276,11 @@ class Equalizer extends Plugin {
    * Destroys an instance of Equalizer.
    * @function
    */
-  _destroy() {
+  destroy() {
     this._pauseEvents();
     this.$watched.css('height', 'auto');
+
+    Foundation.unregisterPlugin(this);
   }
 }
 
@@ -315,4 +311,7 @@ Equalizer.defaults = {
   equalizeOn: ''
 };
 
-export {Equalizer};
+// Window exports
+Foundation.plugin(Equalizer, 'Equalizer');
+
+}(jQuery);

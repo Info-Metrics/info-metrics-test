@@ -359,7 +359,7 @@ declare module FoundationSites {
     GetOffsets(element: Object, anchor: Object, position: string, vOffset: number, hOffset: number, isOverflow: boolean): Object;
   }
 
-  interface Keyboard {
+  interface KeyBoard {
     parseKey(event: any): string;
     handleKey(event: any, component: any, functions: any): void;
     findFocusable($element: Object): Object;
@@ -472,7 +472,7 @@ declare module FoundationSites {
 
     // utils
     Box: Box;
-    Keyboard: Keyboard;
+    KeyBoard: KeyBoard;
     MediaQuery: MediaQuery;
     Motion: Motion;
     Move: Move;
@@ -486,7 +486,7 @@ declare module FoundationSites {
 }
 
 interface JQuery {
-  foundation(method?: string | Array<any>, ...args: any[]): JQuery;
+  foundation(method?: string|Array<any>, $element?: JQuery): JQuery;
 }
 
 declare var Foundation: FoundationSites.FoundationSitesStatic;

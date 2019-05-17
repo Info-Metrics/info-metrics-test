@@ -1,11 +1,6 @@
 'use strict';
 
-import $ from 'jquery';
-import { Plugin } from './foundation.core.plugin';
-import { rtl as Rtl, ignoreMousedisappear } from './foundation.core.utils';
-import { Keyboard } from './foundation.util.keyboard';
-import { Nest } from './foundation.util.nest';
-import { Box } from './foundation.util.box';
+!function($) {
 
 /**
  * DropdownMenu module.
@@ -15,23 +10,23 @@ import { Box } from './foundation.util.box';
  * @requires foundation.util.nest
  */
 
-class DropdownMenu extends Plugin {
+class DropdownMenu {
   /**
    * Creates a new instance of DropdownMenu.
    * @class
-   * @name DropdownMenu
    * @fires DropdownMenu#init
    * @param {jQuery} element - jQuery object to make into a dropdown menu.
    * @param {Object} options - Overrides to the default plugin settings.
    */
-  _setup(element, options) {
+  constructor(element, options) {
     this.$element = element;
     this.options = $.extend({}, DropdownMenu.defaults, this.$element.data(), options);
-    this.className = 'DropdownMenu'; // ie9 back compat
 
+    Foundation.Nest.Feather(this.$element, 'dropdown');
     this._init();
 
-    Keyboard.register('DropdownMenu', {
+    Foundation.registerPlugin(this, 'DropdownMenu');
+    Foundation.Keyboard.register('DropdownMenu', {
       'ENTER': 'open',
       'SPACE': 'open',
       'ARROW_RIGHT': 'next',
@@ -48,8 +43,6 @@ class DropdownMenu extends Plugin {
    * @function
    */
   _init() {
-    Nest.Feather(this.$element, 'dropdown');
-
     var subs = this.$element.find('li.is-dropdown-submenu-parent');
     this.$element.children('.is-dropdown-submenu-parent').children('.is-dropdown-submenu').addClass('first-sub');
 
@@ -57,31 +50,18 @@ class DropdownMenu extends Plugin {
     this.$tabs = this.$element.children('[role="menuitem"]');
     this.$tabs.find('ul.is-dropdown-submenu').addClass(this.options.verticalClass);
 
-    if (this.options.alignment === 'auto') {
-        if (this.$element.hasClass(this.options.rightClass) || Rtl() || this.$element.parents('.top-bar-right').is('*')) {
-            this.options.alignment = 'right';
-            subs.addClass('opens-left');
-        } else {
-            this.options.alignment = 'left';
-            subs.addClass('opens-right');
-        }
+    if (this.$element.hasClass(this.options.rightClass) || this.options.alignment === 'right' || Foundation.rtl() || this.$element.parents('.top-bar-right').is('*')) {
+      this.options.alignment = 'right';
+      subs.addClass('opens-left');
     } else {
-      if (this.options.alignment === 'right') {
-          subs.addClass('opens-left');
-      } else {
-          subs.addClass('opens-right');
-      }
+      subs.addClass('opens-right');
     }
     this.changed = false;
     this._events();
   };
 
   _isVertical() {
-    return this.$tabs.css('display') === 'block' || this.$element.css('flex-direction') === 'column';
-  }
-
-  _isRtl() {
-    return this.$element.hasClass('align-right') || (Rtl() && !this.$element.hasClass('align-left'));
+    return this.$tabs.css('display') === 'block';
   }
 
   /**
@@ -134,28 +114,28 @@ class DropdownMenu extends Plugin {
     }
 
     if (!this.options.disableHover) {
-      this.$menuItems.on('mouseenter.zf.dropdownmenu', function (e) {
+      this.$menuItems.on('mouseenter.zf.dropdownmenu', function(e) {
         var $elem = $(this),
-          hasSub = $elem.hasClass(parClass);
+            hasSub = $elem.hasClass(parClass);
 
         if (hasSub) {
           clearTimeout($elem.data('_delay'));
-          $elem.data('_delay', setTimeout(function () {
+          $elem.data('_delay', setTimeout(function() {
             _this._show($elem.children('.is-dropdown-submenu'));
           }, _this.options.hoverDelay));
         }
-      }).on('mouseleave.zf.dropdownMenu', ignoreMousedisappear(function (e) {
+      }).on('mouseleave.zf.dropdownmenu', function(e) {
         var $elem = $(this),
             hasSub = $elem.hasClass(parClass);
         if (hasSub && _this.options.autoclose) {
           if ($elem.attr('data-is-click') === 'true' && _this.options.clickOpen) { return false; }
 
           clearTimeout($elem.data('_delay'));
-          $elem.data('_delay', setTimeout(function () {
+          $elem.data('_delay', setTimeout(function() {
             _this._hide($elem);
           }, _this.options.closingTime));
         }
-      }));
+      });
     }
     this.$menuItems.on('keydown.zf.dropdownmenu', function(e) {
       var $element = $(e.target).parentsUntil('ul', '[role="menuitem"]'),
@@ -173,8 +153,10 @@ class DropdownMenu extends Plugin {
       });
 
       var nextSibling = function() {
-        $nextElement.children('a:first').focus();
-        e.preventDefault();
+        if (!$element.is(':last-child')) {
+          $nextElement.children('a:first').focus();
+          e.preventDefault();
+        }
       }, prevSibling = function() {
         $prevElement.children('a:first').focus();
         e.preventDefault();
@@ -197,7 +179,7 @@ class DropdownMenu extends Plugin {
         open: openSub,
         close: function() {
           _this._hide(_this.$element);
-          _this.$menuItems.eq(0).children('a').focus(); // focus to first element
+          _this.$menuItems.find('a:first').focus(); // focus to first element
           e.preventDefault();
         },
         handled: function() {
@@ -207,7 +189,7 @@ class DropdownMenu extends Plugin {
 
       if (isTab) {
         if (_this._isVertical()) { // vertical menu
-          if (_this._isRtl()) { // right aligned
+          if (Foundation.rtl()) { // right aligned
             $.extend(functions, {
               down: nextSibling,
               up: prevSibling,
@@ -223,7 +205,7 @@ class DropdownMenu extends Plugin {
             });
           }
         } else { // horizontal menu
-          if (_this._isRtl()) { // right aligned
+          if (Foundation.rtl()) { // right aligned
             $.extend(functions, {
               next: prevSibling,
               previous: nextSibling,
@@ -240,7 +222,7 @@ class DropdownMenu extends Plugin {
           }
         }
       } else { // not tabs -> one sub
-        if (_this._isRtl()) { // right aligned
+        if (Foundation.rtl()) { // right aligned
           $.extend(functions, {
             next: closeSub,
             previous: openSub,
@@ -256,7 +238,7 @@ class DropdownMenu extends Plugin {
           });
         }
       }
-      Keyboard.handleKey(e, 'DropdownMenu', functions);
+      Foundation.Keyboard.handleKey(e, 'DropdownMenu', functions);
 
     });
   }
@@ -284,7 +266,7 @@ class DropdownMenu extends Plugin {
    * @param {jQuery} $sub - ul element that is a submenu to show
    * @function
    * @private
-   * @fires Dropdownmenu#show
+   * @fires DropdownMenu#show
    */
   _show($sub) {
     var idx = this.$tabs.index(this.$tabs.filter(function(i, el) {
@@ -294,12 +276,12 @@ class DropdownMenu extends Plugin {
     this._hide($sibs, idx);
     $sub.css('visibility', 'hidden').addClass('js-dropdown-active')
         .parent('li.is-dropdown-submenu-parent').addClass('is-active');
-    var clear = Box.ImNotTouchingYou($sub, null, true);
+    var clear = Foundation.Box.ImNotTouchingYou($sub, null, true);
     if (!clear) {
       var oldClass = this.options.alignment === 'left' ? '-right' : '-left',
           $parentLi = $sub.parent('.is-dropdown-submenu-parent');
       $parentLi.removeClass(`opens${oldClass}`).addClass(`opens-${this.options.alignment}`);
-      clear = Box.ImNotTouchingYou($sub, null, true);
+      clear = Foundation.Box.ImNotTouchingYou($sub, null, true);
       if (!clear) {
         $parentLi.removeClass(`opens-${this.options.alignment}`).addClass('opens-inner');
       }
@@ -309,7 +291,7 @@ class DropdownMenu extends Plugin {
     if (this.options.closeOnClick) { this._addBodyHandler(); }
     /**
      * Fires when the new dropdown pane is visible.
-     * @event Dropdownmenu#show
+     * @event DropdownMenu#show
      */
     this.$element.trigger('show.zf.dropdownmenu', [$sub]);
   }
@@ -325,7 +307,7 @@ class DropdownMenu extends Plugin {
     var $toClose;
     if ($elem && $elem.length) {
       $toClose = $elem;
-    } else if (typeof idx !== 'undefined') {
+    } else if (idx !== undefined) {
       $toClose = this.$tabs.not(function(i, el) {
         return i === idx;
       });
@@ -351,7 +333,7 @@ class DropdownMenu extends Plugin {
       }
       /**
        * Fires when the open menus are closed.
-       * @event Dropdownmenu#hide
+       * @event DropdownMenu#hide
        */
       this.$element.trigger('hide.zf.dropdownmenu', [$toClose]);
     }
@@ -361,11 +343,12 @@ class DropdownMenu extends Plugin {
    * Destroys the plugin.
    * @function
    */
-  _destroy() {
+  destroy() {
     this.$menuItems.off('.zf.dropdownmenu').removeAttr('data-is-click')
         .removeClass('is-right-arrow is-left-arrow is-down-arrow opens-right opens-left opens-inner');
     $(document.body).off('.zf.dropdownmenu');
-    Nest.Burn(this.$element, 'dropdown');
+    Foundation.Nest.Burn(this.$element, 'dropdown');
+    Foundation.unregisterPlugin(this);
   }
 }
 
@@ -410,12 +393,12 @@ DropdownMenu.defaults = {
 
   closingTime: 500,
   /**
-   * Position of the menu relative to what direction the submenus should open. Handled by JS. Can be `'auto'`, `'left'` or `'right'`.
+   * Position of the menu relative to what direction the submenus should open. Handled by JS. Can be `'left'` or `'right'`.
    * @option
    * @type {string}
-   * @default 'auto'
+   * @default 'left'
    */
-  alignment: 'auto',
+  alignment: 'left',
   /**
    * Allow clicks on the body to close any open submenus.
    * @option
@@ -453,4 +436,7 @@ DropdownMenu.defaults = {
   forceFollow: true
 };
 
-export {DropdownMenu};
+// Window exports
+Foundation.plugin(DropdownMenu, 'DropdownMenu');
+
+}(jQuery);

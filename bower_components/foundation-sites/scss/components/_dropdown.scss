@@ -43,8 +43,7 @@ $dropdown-sizes: (
   position: absolute;
   z-index: 10;
 
-  display: none;
-
+  display: block;
   width: $dropdown-width;
   padding: $dropdown-padding;
 
@@ -55,14 +54,7 @@ $dropdown-sizes: (
 
   font-size: $dropdown-font-size;
 
-
-  // Allow an intermittent state to do positioning before making visible.
-  &.is-opening {
-    display: block;
-  }
-
   &.is-open {
-    display: block;
     visibility: visible;
   }
 }
@@ -73,10 +65,8 @@ $dropdown-sizes: (
   }
 
   @each $name, $size in $dropdown-sizes {
-    .dropdown-pane {
-      &.#{$name} {
-        width: $size;
-      }
+    .dropdown-pane.#{$name} {
+      width: $size;
     }
   }
 }

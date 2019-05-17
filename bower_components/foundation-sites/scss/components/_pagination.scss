@@ -113,7 +113,7 @@ $pagination-arrows: true !default;
   button {
     display: block;
     padding: $padding;
-    border-radius: $radius;
+    border-radius: $global-radius;
     color: $color;
 
     &:hover {
