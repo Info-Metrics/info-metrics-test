@@ -61,7 +61,7 @@ PATHS:
     - "bower_components/foundation-sites/js/foundation.tabs.js"
     - "bower_components/foundation-sites/js/foundation.toggler.js"
     - "bower_components/foundation-sites/js/foundation.tooltip.js"
-    - "bower_components/foundation-sites/js/foundation.responsiveAccordionTabs.js"
+    - "bower_components/foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
     # Paths to your own project code are here
     - "bower_components/magnific-popup/dist/jquery.magnific-popup.js"
     - "bower_components/list.js/dist/list.js"
