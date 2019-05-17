@@ -41,8 +41,8 @@ gulp.task('scripts', () => {
     .pipe($.standard())
     .pipe(
       $.standard.reporter('default', {
-        breakOnError: false,
-        quiet: true
+        breakOnError: true,
+        quiet: false
       })
     )
     .pipe(
