@@ -6,25 +6,46 @@ title: Visualization of Several Objective Functions
     <h1 class="title">Visualization of Several Objective Functions</h1>
 </header>
 <ul class="tabs" data-tabs id="example-tabs">
-    <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Shannon Entropy</a></li>
+    <li class="tabs-title is-active">
+        <a href="#panel1" aria-selected="true">Shannon Entropy</a></li>
     <li class="tabs-title"><a href="#panel2">Sum of Squares</a></li>
     <li class="tabs-title"><a href="#panel3">Renyi Entropy</a></li>
-    <li class="tabs-title"><a href="#panel4">Tsallis Entropy</a></li>
-    <li class="tabs-title"><a href="#panel2">Shannon Entropy with Constraints</a></li>
+    <li class="tabs-title"><a href="#panel4">Empirical Likelihood</a></li>
+    <li class="tabs-title">
+        <a href="#panel2">Shannon Entropy with Constraints</a></li>
 </ul>
+<script type="text/javascript">
+    var pictureList = [
+    "http://lorempixel.com/400/200/sports/1",
+    "http://lorempixel.com/400/200/sports/2",
+    "http://lorempixel.com/400/200/sports/3",
+    "http://lorempixel.com/400/200/sports/4",
+    "http://lorempixel.com/400/200/sports/5", ];
+
+$('#picDD').change(function () {
+    var val = parseInt($('#picDD').val());
+    alert(val);
+    document.renyi_2.src = "{{root}}assets/img/viz/renyi_2_alpha_05.png";
+});
+</script>
 
 <div class="tabs-content" data-tabs-content="example-tabs">
     <div class="tabs-panel is-active" id="panel1">
-        <img src="{{root}}assets/img/viz/Figure_2.png" class="thumbnail" />
-        <img src="{{root}}assets/img/viz/Figure_1.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/shannon_2.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/shannon_3.png" class="thumbnail" />
     </div>
     <div class="tabs-panel" id="panel2">
-        <img src="{{root}}assets/img/viz/Figure_4.png" class="thumbnail" />
-        <img src="{{root}}assets/img/viz/Figure_3.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/sum_of_squares_2.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/sum_of_squares_3.png" class="thumbnail" />
     </div>
     <div class="tabs-panel" id="panel3">
-        <img src="{{root}}assets/img/viz/Figure_6.png" class="thumbnail" />
-        <img src="{{root}}assets/img/viz/Figure_5.png" class="thumbnail" />
+        <select id="picDD">
+            <option value="1">&#945;=0.5</option>
+            <option value="2">&#945;=20</option>
+        </select>
+        <img src="{{root}}assets/img/viz/renyi_2_alpha_05.png" class="thumbnail" 
+            name="renyi_2" />
+        <img src="{{root}}assets/img/viz/reyi_2_alpha_05.png" class="thumbnail" />
     </div>
     <div class="tabs-panel" id="panel4">
         <img src="{{root}}assets/img/viz/Figure_8.png" class="thumbnail" />
