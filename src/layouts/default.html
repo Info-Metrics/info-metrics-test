@@ -44,8 +44,12 @@
 
     {{#ifpage 'index'}}
     <script src="{{root}}assets/js/single-page/magnific-popup.js"></script>
-    {{/ifpage}} {{#ifpage 'code'}}
+    {{/ifpage}} 
+    {{#ifpage 'code'}}
     <script src="{{root}}assets/js/single-page/list.js"></script>
+    {{/ifpage}}
+    {{#ifpage 'viz'}}
+    <script src="{{root}}assets/js/single-page/viz.js"></script>
     {{/ifpage}}
 </body>
 

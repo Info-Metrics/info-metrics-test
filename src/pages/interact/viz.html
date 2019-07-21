@@ -11,23 +11,7 @@ title: Visualization of Several Objective Functions
     <li class="tabs-title"><a href="#panel2">Sum of Squares</a></li>
     <li class="tabs-title"><a href="#panel3">Renyi Entropy</a></li>
     <li class="tabs-title"><a href="#panel4">Empirical Likelihood</a></li>
-    <li class="tabs-title">
-        <a href="#panel2">Shannon Entropy with Constraints</a></li>
 </ul>
-<script type="text/javascript">
-    var pictureList = [
-    "http://lorempixel.com/400/200/sports/1",
-    "http://lorempixel.com/400/200/sports/2",
-    "http://lorempixel.com/400/200/sports/3",
-    "http://lorempixel.com/400/200/sports/4",
-    "http://lorempixel.com/400/200/sports/5", ];
-
-$('#picDD').change(function () {
-    var val = parseInt($('#picDD').val());
-    alert(val);
-    document.renyi_2.src = "{{root}}assets/img/viz/renyi_2_alpha_05.png";
-});
-</script>
 
 <div class="tabs-content" data-tabs-content="example-tabs">
     <div class="tabs-panel is-active" id="panel1">
@@ -45,13 +29,11 @@ $('#picDD').change(function () {
         </select>
         <img src="{{root}}assets/img/viz/renyi_2_alpha_05.png" class="thumbnail" 
             name="renyi_2" />
-        <img src="{{root}}assets/img/viz/reyi_2_alpha_05.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/renyi_2_alpha_05.png" 
+            name="renyi_3" class="thumbnail" />
     </div>
     <div class="tabs-panel" id="panel4">
-        <img src="{{root}}assets/img/viz/Figure_8.png" class="thumbnail" />
-        <img src="{{root}}assets/img/viz/Figure_7.png" class="thumbnail" />
-    </div>
-    <div class="tabs-panel" id="panel4">
-        <img src="{{root}}assets/img/viz/Figure_9.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/empirical_likelihood_2.png" class="thumbnail" />
+        <img src="{{root}}assets/img/viz/empirical_likelihood_3.png" class="thumbnail" />
     </div>
 </div>

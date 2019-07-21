@@ -7,6 +7,10 @@
 
 $('#picDD').change(function () {
     var val = parseInt($('#picDD').val());
-    alert(val);
-    document.renyi_2.src = "{{root}}assets/img/viz/renyi_2_alpha_05.png";
+    if (val == 1);
+    	document.renyi_2.src = "/assets/img/viz/renyi_2_alpha_05.png";
+    	document.renyi_3.src = "/assets/img/viz/renyi_3_alpha_20.png"
+    if (val == 2)
+    	document.renyi_2.src = "/assets/img/viz/renyi_2_alpha_20.png";
+    	document.renyi_3.src = "/assets/img/viz/renyi_3_alpha_20.png";
 });
