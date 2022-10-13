@@ -1,0 +1,382 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109788105-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109788105-1');
+</script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="info-metrics,information theory, maximum entropy, modeling, optimality, uncertainty, under-determined problems, inference, multidisciplinary modeling, statistical inference decision function, rational inference, grouping property, mutual information, relative entropy, Shannon-Khinchin axioms, uncertainty, concentrated model, conjugate variable, inverse problem, Lagrange multipliers, applied maximum entropy, information and networks, information-theoretic inference, limited data, portfolio analysis, inferring power law, tomographic reconstruction, interval data and information, surprisal analysis, computational efficiency, concentration theorem, conditional limit theorem, efficiency, information compression, statistical sufficiency, cross entropy, empirical priors, grouping property, prior information, relative entropy, transformation groups, treatment effect and priors, inferring strategies, info-metrics visual representation, Markov process, meta-theory, noisy inverse problem, concentrated framework, inferring strategies , Lagrange multipliers, Markov process, meta-theory, noisy inverse problem, support space, uncertainty, constructing theories, model building, falsification, validation, causal inference, default logic, Inferring Markov transitions, nonmonotonic logic, discrete choice problems, generalized likelihood, marginal effects, maximum likelihood, misspecification, model comparison, election prediction, option pricing, predicting dose effects, predicting coronary artery disease" />
+    <title>Supplemental Material - Foundations of Info-Metrics</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+
+<body>
+
+     <div data-sticky-container>
+    <div class="top-bar" data-sticky data-options="marginTop:0" style="width:100%">
+        <div class="top-bar-title">
+            <a href="#">Foundations of Info-Metrics</a>
+        </div>
+        <div>
+            <div class="top-bar-left" data-responsive-toggle="main-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+            </div>
+            <div class="top-bar-right hide-for-small-only">
+                <ul class="menu" data-accordion-menu>
+                    <li>
+                        <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
+                    </li>
+                    <li>
+                        <a href="books.html">Other Books by the Author</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="column small-12 medium-4">
+            <nav id="main-menu">
+                <ul class="menu vertical">
+                    <li >
+                        <a href="index.html">Home</a></li>
+                    <li >
+                        <a href="topics.html">Short Table of Contents</a></li>
+                    <li >
+                        <a href="toc.html">Detailed Table of Contents</a></li>
+                    <li >
+                        <a href="interact.html">Interactive Examples</a></li>
+                    <li >
+                        <a href="code.html">Codes and Examples</a></li>
+                    <li >
+                        <a href="data.html">Data for Examples</a></li>
+                    <li >
+                        <a href="bibliography.html">Bibliography</a></li>
+                    <li  class="active" >
+                        <a href="supplemental.html">Supplemental Material by
+                        Chapter</a></li>
+                    <li >
+                        <a href="endorsements.html">Reviews and Endorsements</a></li>
+                    <li >
+                        <a href="video.html">Recent 'Foundations' Talks</a>
+                    </li>
+                    <li>
+                        <a href="https://www.american.edu/cas/economics/info-metrics/">Info-Metrics Institute at American University</a></li>
+                    <li class="show-for-small-only">
+                        <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
+                    </li>
+                    <li class="show-for-small-only">
+                        <a href="books.html">Other Books by the Author</a>
+                    </li>
+                </ul>
+                <form class="card" action="https://formspree.io/info-metrics@american.edu", method="POST">
+                    <section class="card-divider">
+                        <label>Join the Mailing List
+                    </section>
+                
+                    <section class="card-section">
+                            <a href="#" rel="popover" title="Info-Metrics Mailing List"
+                
+                                data-content="The mailing list is a place to ask questions related to the field of info-metrics."><i class="glyphicon glyphicon-question-sign"></i></a>
+                
+                        </label>
+                
+                        <input type="text" placeholder="name@example.com" name="email">
+                
+                        <button type="submit" class="button">Join</button>
+                    </section>
+                
+                  </form>
+            </nav>
+        </div>
+        <div class="column small-12 medium-8">
+            
+            <header>
+                <h1 class="title">Supplemental Material by Chapter</h1>
+                <p>
+                    The links (by chapter) in this page are for codes, examples, or further derivations and extensions that were referred to in the text.
+                </p>
+            </header>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th width=100>Chapter</th>
+                        <th width=150>Page</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>p. 73</td>
+                        <td>
+                            <p>
+                                Any other criterion that is used for solving problem (4.2) or (4.19) must yield a solution with a lower entropy value—a more informed one where the number of minimal yes/no questions must be lower. (See later chapters and the <code><a href="code.html#Classical Dual ME Example2" title="Link to classical dual example ME computer code"> Classical Dual ME Example2.gms</a></code>                    and <code><a href="code.html#Classical ME Dice Example" title="Link to classical dual ME example">Classical ME Dice Example.gms</a></code> in the "Codes and Examples" section for examples of other criteria and different measures
+                                of comparing the resulting distributions with the uninformed uniform one.)
+                            </p>
+                            <p>
+                                For a visual representation of the entropy function, check <code><a href="code.html#Entropy Function">entropy function.py</a></code> in the "Codes and Examples" section.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>p. 90</td>
+                        <td>
+                            <p>
+                                One to one correspondence between Hessians of the primal and of the dual models: "This corresponde is evident when the numerical solutions are coded. But information theory and relative entropy offer a more intuitive perspective."
+                            </p>
+                            <p>
+                                Please see the code <code><a href="code.html#Centropy Hessian">centropy hessian.gms</a></code>, <code><a href="code.html#Dual Classical">dual_classical.py</a></code> and <code><a href="code.html#Primal Taylor">Primal Taylor.gms</a></code>                    for an exploration of these concepts.
+                            </p>
+                            <p>
+                                For more information on the unique relationship between the Covariances of the primal and dual, see, for example, Appendix C of Chapter 3 in <u>Golan, Judge and Miller (1996)</u>.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>p. 93</td>
+                        <td>
+                            <p>
+                                The exact formulation of the Hessian and the covariance for all formulations discussed are included in <code><a href="code.html#Centropy Hessian">centropy hessian.gms</a></code> and <code><a href="code.html#Primal Taylor">Primal Taylor.gms</a></code>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>p. 104</td>
+                        <td>
+                            <p>
+                                <em>Exercise 16 (Computer Practice II: Maximizing Entropy Versus Maximizing Other Objective Functions)</em>: Use any one of the codes referred to in Chapter 4 and use (or add) any criterion (objective function) you like.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>p. 104</td>
+                        <td>
+                            <p>
+                                <em>Exercise 17</em>: different examples and graphical analyses of comparing the maximum entropy method with other information-theoretic methods that use the same constraints but different entropies as objective functions can be found
+                                in <code><a href="code.html#Classical ME Dice Example">Classical ME Dice Example.gms</a></code> in the codes and examples section. This file generates graphs in Excel.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 5</td>
+                        <td>p. 116</td>
+                        <td>
+                            <p>
+                                The codes for generating the data and solving the firm size problems are available in <code><a href="code.html#Firm Size Distribution">firm size distribution</a></code> and <code><a href="code.html#Firm Size Distribution GAMS">firm size distribution (GAMS)</a></code>                    in the "Codes and Examples" section. Similar exploration of income distribution is found in <code><a href="code.html#Income Distribution">income distribution</a></code>.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 5</td>
+                        <td>p. 131</td>
+                        <td>
+                            <p>
+                                A simpler version of the code (for aggregating networks with a small number of nodes) is <strong></strong><em>code is under revision; to be added</em></strong>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 5</td>
+                        <td>p. 132</td>
+                        <td>
+                            <p>
+                                <em>Exercise 6 (Multidimensional Size Distribution)</em>: see <code><a href="code.html#Firm Size Distribution">firm size distribution</a></code> and <code><a href="code.html#Firm Size Distribution GAMS">firm size distributiin (GAMS)</a></code>in
+                                the codes and examples section for further exploration of the multidimensional firm size example. Please see <code><a href="code.html#Income Distribution">income distribution</a></code> for exploration of a similar topic.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 6</td>
+                        <td>p. 140 <br />p. 142</td>
+                        <td>
+                            <p>
+                                This code is for transformation of the original data (daily minimum and maximum temperature) into n and k as is shown in Appendix 6A. As an example it presents the transformation of the NYC, March 2013 data. The results are also shown in the
+                                <a
+                                    href="assets/code_examples/NYC_2013_March.xls">table</a>. The LA example is available in <code><a href="assets/code_examples/LA_example.zip">LA example</a></code> of the "Codes and Examples" section of the website.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 6</td>
+                        <td>p. 143</td>
+                        <td>
+                            <p>
+                                The estimated <em>T</em> and <em>w</em> in this case are -11.11 and 0.29 respectively for 1931, and -142.86 and 5.29 respectively for 2013. The signs of the <em>w</em>’s in this case are also consistent with our earlier argument (Section
+                                2.4) since the integer n is both negative and positive.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 6</td>
+                        <td>p. 145 <br/> p. 159</td>
+                        <td>
+                            <p>
+                                The code for generating these data and that for other related experiments, as well as detailed solution and diagnostics, is available in Appendix 6B. An example of step 1 in <em>Mathematica</em> is below:
+                            </p>
+                            <pre>
+            nobs=100  (* number of individuals *)
+            (* Symptom 1: hyperactivity *)
+            X1=RandomVariate[NormalDistribution[0,2],nobs];
+            (* Symptom 2: dislexia *)
+            u2=RandomVariate[UniformDistribution[{0,1}],nobs];
+            X2=Map[If[#>0.8,1,0]&,u2];
+            (* Symptom 3: attention deficit *)
+            X3=Map[If[#>1,1,0]&,X1];
+            (* Environmental Impact: single parent household *)
+            u4=RandomVariate[UniformDistribution[{0,1}],nobs];
+            X4=Map[If[#>0.8,1,0]&,u4]
+            (* Other: age in years *)
+            X5=RandomVariate[UniformDistribution[{3,18}],nobs];
+                            </pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 6</td>
+                        <td>p. 146</td>
+                        <td>
+                            <p>
+                                Marginal effects -- to be added
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 6</td>
+                        <td>p. 155</td>
+                        <td>
+                            <p>
+                                Though this is not a precise number, the lack of precision does not bias the inferred probabilities (in a significant way) in this case, as long as that value is in the neighborhood of the correct magnitude. (See exercises, and chapter 6 examples in the
+                                codes and examples section.)
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 7</td>
+                        <td>p. 171 (Box 7.1) <br />p. 188</td>
+                        <td>
+                            <p>
+                                For the direct relationships among these covariances, or for the transformation between the covariance in parameter space to the probability space, see, for example, appendix 3C in <u>Golan, Judge and Miller (1996)</u>.
+                            </p>
+                            <p>
+                                Please see the code <code><a href="code.html#Centropy Hessian">centropy hessian.gms</a></code>, <code><a href="code.html#Dual Classical">dual_classical.py</a></code> and <code><a href="code.html#Primal Taylor">Primal Taylor.gms</a></code>                    for an exploration of these concepts.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 8</td>
+                        <td>p. 226</td>
+                        <td>
+                            <p>
+                                Exercise 3 (Relative Entropy and Maximum Entropy—Computer Practice): Codes for Cross Entropy are available in all commonly used software packages (Stata, SAS
+                                < Matlab, GAMS, Python). Please see the codes and examples section. Codes of interest include <code><a href="code.html#Dual-Info">Dual-Info.gms</a></code>, <code><a href="code.html#Primal Classical">primal classical.py</a></code>, <code><a href="code.html#Dual Classical">dual_classical.py, centropy hessian.gms</a></code>,
+                                    <code><a href="code.html#Classical ME Example1">Classical_ME_Example1</a></code> gams code,
+                                    <code><a href="code.html#Classical Dual ME Example2">Classical Dual ME Example2.gms</a></code>, <code><a href="code.html#Classical ME Dice Example">Classical ME Dice Example.gms</a></code>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 8</td>
+                        <td>p. 227</td>
+                        <td>
+                            <p>
+                                Exercise 5 (Grouping: Size Distribution): User needs to modify the code in <code><a href="code.html#Firm Size Distribution">Firm Size Distribution</a></code> to add priors (documented in the code).
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 11</td>
+                        <td>p. 324 (Box 11.2)</td>
+                        <td>
+                            <p>
+                                See the codes related to matrix balancing (
+                                <code><a href="code.html#Simple Matrix Balancing">Simple Matrix Balancing.gms</a></code>,
+                                <code><a href="code.html#Matrix1">Matrix1.gms</a></code>, <code><a href="code.html#Matrix2">Matrix2.gms</a></code>,
+                                <code><a href="code.html#Matrix3">Matrix3.gms</a></code>,
+                                <code><a href="code.html#Matrix Balancing">matrix balancing.py</a></code>.)
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 12</td>
+                        <td>&nbsp;</td>
+                        <td>
+                            <p>
+                                See the smoking example (<code><a href="code.html#Smoker Stata">Smoker stata.do</a></code>, <code><a href="code.html#Smoker Limdep">Smoker limdep.lim</a></code>, <code><a href="code.html#SAS Smoker">SAS smoker.sas</a></code>)
+                                as an example of the discrete choice problem.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 12</td>
+                        <td>pp. 345-346</td>
+                        <td>
+                            <p>
+                                Data related to the example is available in the "<a href="data.html">Data for Examples</a>" section. Please refer to the binomial (and multinomial) choice examples in the "Codes and Examples" section (specifically, <code><a href="code.html#Smoker Stata">Smoker stata.do</a></code>,
+                                <code><a href="code.html#Smoker Limdep">Smoker limdep.lim</a></code>, <code><a href="code.html#SAS Smoker">SAS smoker.sas</a></code>, <code><a href="code.html#Gmentropylogit">gmentropylogit.ado</a></code>).
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 13</td>
+                        <td>p. 401</td>
+                        <td>
+                            <p>
+                                Please refer to the "linear" examples in the "Codes and Examples" section (specifically <code><a href="code.html#Linear Auto">Linear auto.gms</a></code>, <code><a href="code.html#Linear Random">Linear random.gms</a></code>,
+                                <code><a href="code.html#GME Random">GME random.gms</a></code>, <code><a href="code.html#GME Auto Example">GME auto example.do</a></code> and <code><a href="code.html#GMEntropylinear">gmentropylinear.ado</a></code>).
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 14</td>
+                        <td>p. 412</td>
+                        <td>
+                            <p>
+                                For option pricing, please refer to <code><a href="assets/code_examples/option.zip">Option.zip</a></code>. For Improved election prediction, refer to <code><a href="assets/code_examples/election.zip">Election.zip</a></code>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 14</td>
+                        <td>p. 423 (Box 11.2) <br />p. 424</td>
+                        <td>
+                            <p>
+                                Predicting Coronary Artery&mdash;The analysis can be performed in Stata, SAS or GAMS. Users should remember to transform the original data as described in the text. Also refer to <code><a href="assets/code_examples/heart.zip">heart.zip</a></code>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 14</td>
+                        <td>p. 434 <br />p. 437</td>
+                        <td>
+                            <p>
+                                Please refer to <code><a href="assets/code_examples/liver.zip">liver.zip</a></code>
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
