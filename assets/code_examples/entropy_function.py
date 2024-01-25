@@ -1,12 +1,8 @@
-"""
-Author: Skipper Seabold
-License: Modified BSD License
-Created: 5-21-2012
+#!/usr/bin/env python
+# coding: utf-8
 
-File Description
-----------------
-Explore the properties of the Entropy function graphically.
-"""
+# In[2]:
+
 
 # 3rd-party libraries
 import matplotlib.pyplot as plt
@@ -29,6 +25,13 @@ ax = fig.add_subplot(111)
 
 probs = zip(prob, 1-prob) # each row is a Bernoulli probability
 entropy2 = lambda prob : entropy(prob, base=2)
-ax.plot(prob, map(entropy2, probs))
+ax.plot(prob, list(map(entropy2, probs))) #add list() before map()
 ax.set(ylabel="Entropy", xlabel="Probability")
 plt.show()
+
+
+# In[ ]:
+
+
+
+

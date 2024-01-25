@@ -1,17 +1,12 @@
-"""
-Author: Skipper Seabold
-License: Modified BSD License
-Created: 5-22-2012
+#!/usr/bin/env python
+# coding: utf-8
 
-File Description
-----------------
-Optimize the dual concentrated maximum entropy objective.
-"""
-from __future__ import division
+# In[9]:
+
 
 import numpy as np
 from scipy import optimize
-from scipy.misc import logsumexp
+from scipy.special import logsumexp #import logsumexp from a different package in scipy instead of scipy.misc
 
 np.random.seed(12345)
 k = 10
@@ -49,7 +44,7 @@ partition = p.sum()
 
 p = p / partition
 
-print p
+print(p) #Add parenthesis
 
 def logsumexp_b(a, b, axis=None):
     """
@@ -83,8 +78,8 @@ def logsumexp_b(a, b, axis=None):
     >>> np.log(np.sum(b*np.exp(a)))
     9.9170178533034647
     """
-    a = asarray(a)
-    b = asarray(b)
+    a = np.asarray(a) #add np. before asarray when defining both a and b
+    b = np.asarray(b)
     if axis is None:
         a = a.ravel()
         b = b.ravel()
@@ -92,7 +87,7 @@ def logsumexp_b(a, b, axis=None):
         a = rollaxis(a, axis)
         b = rollaxis(b, axis)
     a_max = a.max(axis=0)
-    out = log(sum(b * exp(a - a_max), axis=0))
+    out = np.log(np.sum(b * np.exp(a - a_max), axis=0)) #add np. before log, sum and exp
     out += a_max
     return out
 
@@ -122,3 +117,10 @@ p_ce = np.exp(-np.dot(lm_res_ce, X))
 partition = p_ce.sum()
 
 p_ce = p_ce / partition
+
+
+# In[ ]:
+
+
+
+
