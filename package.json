@@ -25,7 +25,7 @@
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "^2.2.1",
     "gulp-load-plugins": "^1.1.0",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
     "gulp-uncss": "^1.0.1",
@@ -48,5 +48,8 @@
       "es2015"
     ]
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "sass": "^1.70.0"
+  }
 }

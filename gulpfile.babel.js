@@ -13,6 +13,9 @@ import fs       from 'fs';
 // Load all Gulp plugins into one variable
 const $ = plugins();
 
+// SASS thingy
+const gulpSass = require('gulp-sass')(require('sass'));
+
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
 
@@ -86,10 +89,10 @@ function styleGuide(done) {
 function sass() {
   return gulp.src('src/assets/scss/app.scss')
     .pipe($.sourcemaps.init())
-    .pipe($.sass({
+    .pipe(gulpSass({
       includePaths: PATHS.sass
     })
-      .on('error', $.sass.logError))
+      .on('error', gulpSass.logError))
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
