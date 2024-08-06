@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[32]:
-
 
 import numpy as np
 import pandas as pd
@@ -10,7 +8,7 @@ import statsmodels.api as sm
 from scipy.optimize import minimize
 
 # Load data from CSV into a pandas DataFrame
-dta = pd.read_table('beer.csv', delimiter=" ",
+dta = pd.read_table('data/beer.csv', delimiter=" ",
                     names=["Y", "P_B", "P_L", "P_R", "Income"])
 
 # Convert "Y" column to numeric values
@@ -87,9 +85,8 @@ probs, errors, res = linear_entropy_model(y, X, Z, V)
 # Calculate beta using the obtained probabilities and Z
 beta = np.dot(probs, Z)
 
+# Print results to scree
+col_names = dta.columns.values.tolist()
 
-# In[ ]:
-
-
-
-
+for name, b in zip(col_names, beta):
+    print('{name}:\t{b:.2e}'.format(name = name, b=b))
