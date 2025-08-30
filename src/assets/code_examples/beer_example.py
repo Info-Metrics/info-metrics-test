@@ -3,14 +3,11 @@ import pandas
 import statsmodels.api as sm
 import openopt
 from FuncDesigner import oovars, sum, log, dot
-
 dta = pandas.read_table('./data/beer.csv', delimiter=" ",
                         names=["Y", "P_B", "P_L", "P_R", "Income"])
-
 y = np.log(dta["Y"])
 X = np.log(dta[["P_B", "P_L", "P_R", "Income"]])
 X.insert(0, "constant", 1)
-
 def linear_entropy_model(y, X, Z, V):
     """
     """
@@ -19,7 +16,6 @@ def linear_entropy_model(y, X, Z, V):
     V = np.array(V)
     m = len(Z)
     j = len(V)
-
     prob_names = ['prob%d' % d for d in range(k)]
     error_names = ["error%d" % d for d in range(nobs)]
     variables = oovars(*(prob_names + error_names))
@@ -36,17 +32,13 @@ def linear_entropy_model(y, X, Z, V):
     constraints += [vector > 0 for vector in variables]
     problem.constraints = constraints
     result = problem.maximize('scipy_slsqp')
-
     # pull the results out of the dictionary
     keys = {}
     for key, vector in res.xf.iteritems():
         keys.update({str(key) : key})
-
     probs = np.vstack([res.xf[keys['prob%d' % d]] for d in range(5)])
     errors = np.vstack([res.xf[keys['error%d' % d]] for d in range(30)])
-
     return probs, errors, result
-
 
 Z = np.linspace(-5, 5, 5) * 100
 V = np.linspace(-1, 1, 3) * y.std() * 3
