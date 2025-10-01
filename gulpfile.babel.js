@@ -9,6 +9,10 @@ import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
+import terser   from 'gulp-terser';
+import babel   from 'gulp-babel';
+
+
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -105,22 +109,19 @@ function sass() {
 }
 
 function javascript() {
-  // Insert this section before the return statement
-  gulp.src('src/assets/js/single-page/**/*.js')
-  .pipe($.if(PRODUCTION, $.uglify()
-    .on('error', e => { console.log(e); })
-  ))
-  .pipe(gulp.dest(PATHS.dist + '/assets/js/single-page'));
-
-  return gulp.src(PATHS.javascript)
-    .pipe($.sourcemaps.init())
-    .pipe($.babel({ignore: ['what-input.js']}))
-    .pipe($.concat('app.js'))
-    .pipe($.if(PRODUCTION, $.uglify()
-      .on('error', e => { console.log(e); })
-    ))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+  return gulp.src([
+      'src/assets/js/**/*.js',
+      '!bower_components/**',     // don’t read bower files here
+      // include your vendor bundle if you consciously concat it,
+      // but DO NOT pipe vendor through Babel
+    ], { sourcemaps: true })
+    // if you’re currently mixing vendor + app in one stream,
+    // split them or guard with gulp-if based on path.
+    .pipe(babel({
+      presets: [["@babel/preset-env", { targets: { browsers: ["last 2 versions", "not dead"] }, modules: false }]]
+    }))
+    .pipe(terser({ ecma: 2015 }))   // terser understands ES2015+ (incl. `)
+    .pipe(gulp.dest('dist/assets/js', { sourcemaps: '.' }));
 }
 
 // Copy images to the "dist" folder
