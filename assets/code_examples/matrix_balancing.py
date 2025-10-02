@@ -1,12 +1,20 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Author: Skipper Seabold
+License: Modified BSD License
+Created: 06-10-2012
 
-# In[2]:
-
-
+File Description
+----------------
+Classical ME CE and Dual formulations for the Matrix Balancing problem:
+  y=Ax where A is a K by K matrix and coefficients of each one of the K
+  columns sum up to 1 (i.e., proper distribution).
+  Example 1: an 11 by 11 SAM of the US
+  Comparing the primal and concentrated (dual) models
+  Try with the given priors and with uniform priors
+"""
 import numpy as np
 import pandas
-import mystic #instead of openopt
+import openopt
 
 # IO flows in 1977
 q0 = pandas.read_csv('./data/io1977.csv')
@@ -54,7 +62,7 @@ def classical_ce(objective, a0, prob0, X, Y):
     lb = [[0] * k] * k
     ub = [[1] * k] * k
 
-    problem = mystic.NLP(objective, a0, Aeq=Aeq, beq=beq, lb=lb,
+    problem = openopt.NLP(objective, a0, Aeq=Aeq, beq=beq, lb=lb,
                           ub=ub, ftol=1e-12, iprint=-1, goal='min')
     problem.args.f = prob0
 
@@ -69,10 +77,3 @@ def classical_ce(objective, a0, prob0, X, Y):
 a_init = np.ones((11,11))/11
 uniform = a_init.copy()
 result_ce = classical_ce(entropy, a_init, uniform, X, Y)
-
-
-# In[ ]:
-
-
-
-

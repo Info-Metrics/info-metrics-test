@@ -1,130 +1,184 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Author: Skipper Seabold
+License: Modified BSD License
+Created:
 
-# In[1]:
-
+File Description
+----------------
+"""
+from __future__ import division # force floating point division
 
 # 3rd-party libraries
+import openopt
 import numpy as np
-from scipy.optimize import minimize
-from scipy.stats import entropy
-
-# Pretty-print numpy arrays
-def pprint(x):
-    print(np.array_str(x, precision=4, suppress_small=True))
-
-
-# In[2]:
-
-
-# Create data
 np.random.seed(12345)
 
-k = 10 # Number of parameters to be estimated
-t = 8 # Number of observations
+k = 10
+t = 1
 
-# Create true, unknown probabilities
+# Create the True, unknown, probabilities
 
 alpha = np.repeat(k,k)
 ptrue = np.random.dirichlet(alpha)
 
-print("True Probabilities:")
-pprint(ptrue)
-
-
 X = np.random.normal(size=(t,k))
-y = np.dot(X, ptrue)
+y = np.dot(X, ptrue) # no noise
 
+# Solve the problem in the primal form using OpenOpt
 
-# In[3]:
+def classical_me(objective, y, X, prob0=None):
+    """
+    Maximize the classical Maximum Entropy in terms of p with the moment
+    constraint given below.
 
+    Parameters
+    ----------
+    objective : func
+        The objective function
+    y : array
+        The value of the moment
+    X : array
+        The data
+    prob0 : array, optional
+        A first guess on the probabilities for the optimizer. If not given,
+        uniform probabilities are given.
 
-def classical_me_scipy(y, X, prob0=None):
+    Model:
+
+    max = p * log(p)
+     p
+
+    s.t.
+
+    p > 0
+    sum(p) == 1
+    y == dot(X,p)
+
+    Notes
+    -----
+
+    To specify NLP programming problems in OpenOpt the constraints
+    have to be put in the following algebraic form. See
+    http://openopt.org/NLP
+
+	min/max obj function
+
+	subjected to
+
+	# lb<= x <= ub:
+ 	# Ax <= b
+ 	# Aeq x = beq
+ 	# c(x) <= 0
+ 	# h(x) = 0
+    """
     k = X.shape[1]
-
-    # Objective function (to be minimized)
-    def objective(p):
-        return -entropy(p)  # negative because scipy.optimize.minimize performs minimization
-
-    # Constraints
-    cons = ({'type': 'eq', 'fun': lambda p: np.dot(X, p) - y},
-            {'type': 'eq', 'fun': lambda p: np.sum(p) - 1})
-
-    # Bounds
-    bounds = [(0, 1) for _ in range(k)]
-
-    # Initial guess
+    Aeq = np.vstack((np.atleast_2d(X), np.ones(k)))
+    beq = np.hstack((y, 1))
+    lb = np.zeros(k)
+    ub = np.ones(k)
     if prob0 is None:
-        prob0 = np.full(k, 1/k)
+        prob0 = np.repeat(1/k, k)
 
-    # Solving the problem
-    result = minimize(objective, prob0, method='SLSQP', bounds=bounds, constraints=cons) #sequential least squares programming algorithm
-
-    if not result.success:
+    problem = openopt.NLP(objective, prob0, Aeq=Aeq, beq=beq, lb=lb,
+                          ub=ub, ftol=1e-12, _print=-1, goal='max')
+    #use the best solver you have installed, if you
+    #if you haven't built the other optional installers, use
+    solver = 'ralg'
+    result = problem.solve(solver)
+    try:
+        assert result.isFeasible # make sure everything is okay
+    except:
         raise ValueError("The problem was found to be infeasible")
+    return result
 
-    return result.x
+# Use the entropy function from scipy.stats
+from scipy.stats import entropy
 
+# maximize classical ME
+results_me = classical_me(entropy, y, X)
+print results_me.xf
 
-# In[4]:
+def classical_ce(objective, prior, y, X, prob0=None):
+    """
+    Maximize the classical Maximum Entropy in terms of p with the moment
+    constraint given below.
 
+    Parameters
+    ----------
+    objective : func
+        The objective function
+    y : array
+        The value of the moment
+    X : array
+        The data
+    prob0 : array, optional
+        A first guess on the probabilities for the optimizer. If not given,
+        uniform probabilities are given.
+    prior : array, optional
+        The prior for the classical cross-entropy model.
 
-# Classical ME results
-results_me_scipy = classical_me_scipy(y, X)
-pprint(results_me_scipy)
+    Model:
 
+    max = p * log(p/prior)
+     p
 
-# In[4]:
+    s.t.
 
+    p > 0
+    sum(p) == 1
+    y == dot(X, p)
 
-def classical_ce_scipy(prior, y, X, prob0=None):
+    Notes
+    -----
+
+    To specify NLP programming problems in OpenOpt the constraints
+    have to be put in the following algebraic form. See
+    http://openopt.org/NLP
+
+	min/max obj function
+
+	subjected to
+
+	# lb<= x <= ub:
+ 	# Ax <= b
+ 	# Aeq x = beq
+ 	# c(x) <= 0
+ 	# h(x) = 0
+    """
     k = X.shape[1]
-
-    # Objective function (to be minimized)
-    def objective(p):
-        return entropy(p, prior)
-
-    # Constraints and bounds are the same as ME
-    cons = ({'type': 'eq', 'fun': lambda p: np.dot(X, p) - y},
-            {'type': 'eq', 'fun': lambda p: np.sum(p) - 1})
-    bounds = [(0, 1) for _ in range(k)]
-
-    # Initial guess
+    Aeq = np.vstack((X, np.ones(k)))
+    beq = np.hstack((y,1))
+    lb = np.zeros(k)
+    ub = np.ones(k)
     if prob0 is None:
-        prob0 = np.full(k, 1/k)
+        prob0 = np.repeat(1/k, k)
 
-    # Solving the problem
-    result = minimize(objective, prob0, method='SLSQP', bounds=bounds, constraints=cons)
-
-    if not result.success:
+    problem = openopt.NLP(objective, prob0, Aeq=Aeq, beq=beq, lb=lb,
+                          ub=ub, ftol=1e-12, iprint=-1, goal='min')
+    problem.args.f = prior
+    #use the best solver you have installed, if you
+    #if you haven't built the other optional installers, use
+    solver = 'ralg'
+    result = problem.solve(solver)
+    try:
+        assert result.isFeasible # make sure everything is okay
+    except:
         raise ValueError("The problem was found to be infeasible")
-
-    return result.x
-
-
-# In[5]:
-
+    return result
 
 # minimize cross-entropy
 
 # Case A Uniform Priors CE = ME
 prior1 = np.repeat(1/k, k)
-results_ce1 = classical_ce_scipy(prior1, y, X)
-pprint(results_ce1)
+results_ce1 = classical_ce(entropy, prior1, y, X)
+print results_ce1.xf
 
 # Case B Random Incorrect Priors
-prior2 = np.array([0.11, 0.10, 0.09, 0.07, 0.14, 0.13, 0.09, 0.11, 0.07, 0.09])
-results_ce2 = classical_ce_scipy(prior2, y, X)
-pprint(results_ce2)
+prior2 = np.random.dirichlet(alpha)
+results_ce2 = classical_ce(entropy, prior2, y, X)
+print results_ce2.xf
 
 # Case C Correct priors
 prior3 = ptrue
-results_ce3 = classical_ce_scipy(prior3, y, X)
-pprint(results_ce3)
-
-
-# In[ ]:
-
-
-
-
+results_ce3 = classical_ce(entropy, prior3, y, X)
+print results_ce3.xf
