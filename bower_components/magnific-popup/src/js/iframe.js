@@ -91,7 +91,6 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 			if(iframeSt.srcAction) {
 				dataObj[iframeSt.srcAction] = embedSrc;
 			}
-
 			mfp._parseMarkup(template, dataObj, item);
 
 			mfp.updateStatus('ready');

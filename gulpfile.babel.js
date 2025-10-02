@@ -9,13 +9,6 @@ import rimraf   from 'rimraf';
 import sherpa   from 'style-sherpa';
 import yaml     from 'js-yaml';
 import fs       from 'fs';
-import terser   from 'gulp-terser';
-import babel   from 'gulp-babel';
-import ghpages from 'gh-pages';
-import path from 'path';
-
-
-
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -46,16 +39,10 @@ gulp.task('default',
 gulp.task('deploy', gulp.series('build', push));
 
 // Add CNAME and Push the dist folder to gihub
-function push(done) {
-  ghpages.publish(path.join(process.cwd(), 'dist'), {
-    dot: true,                                     // include dotfiles like .nojekyll if any
-    message: `Deploy ${new Date().toISOString()}`, // nicer commit message
-    // branch: 'gh-pages',                         // uncomment to force a branch
-    // repo: 'https://github.com/Info-Metrics/info-metrics-test.git', // optional override
-    // user: { name: 'Arnob L. Alam', email: 'you@example.com' },     // if git identity is missing
-  }, done);
-}
-
+function push() {
+     return gulp.src(['./dist/**/*', './src/CNAME'])
+        .pipe($.ghPages())
+ }
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -118,19 +105,22 @@ function sass() {
 }
 
 function javascript() {
-  return gulp.src([
-      'src/assets/js/**/*.js',
-      '!bower_components/**',     // don’t read bower files here
-      // include your vendor bundle if you consciously concat it,
-      // but DO NOT pipe vendor through Babel
-    ], { sourcemaps: true })
-    // if you’re currently mixing vendor + app in one stream,
-    // split them or guard with gulp-if based on path.
-    .pipe(babel({
-      presets: [["@babel/preset-env", { targets: { browsers: ["last 2 versions", "not dead"] }, modules: false }]]
-    }))
-    .pipe(terser({ ecma: 2015 }))   // terser understands ES2015+ (incl. `)
-    .pipe(gulp.dest('dist/assets/js', { sourcemaps: '.' }));
+  // Insert this section before the return statement
+  gulp.src('src/assets/js/single-page/**/*.js')
+  .pipe($.if(PRODUCTION, $.uglify()
+    .on('error', e => { console.log(e); })
+  ))
+  .pipe(gulp.dest(PATHS.dist + '/assets/js/single-page'));
+
+  return gulp.src(PATHS.javascript)
+    .pipe($.sourcemaps.init())
+    .pipe($.babel({ignore: ['what-input.js']}))
+    .pipe($.concat('app.js'))
+    .pipe($.if(PRODUCTION, $.uglify()
+      .on('error', e => { console.log(e); })
+    ))
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
 
 // Copy images to the "dist" folder

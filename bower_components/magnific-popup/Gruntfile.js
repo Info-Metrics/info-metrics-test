@@ -6,8 +6,6 @@
  * 
  */
 
-var sass = require('dart-sass');
-
 module.exports = function(grunt) {
 
   'use strict';
@@ -34,11 +32,7 @@ module.exports = function(grunt) {
       files: ['dist']
     },
     
-    sass: {     
-      options: {
-        implementation: sass,
-        sourceMap: true
-      },       
+    sass: {                            
       dist: {                      
         files: {      
           'dist/magnific-popup.css': 'src/css/main.scss'

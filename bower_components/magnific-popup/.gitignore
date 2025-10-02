@@ -22,5 +22,3 @@ website/dist/
 /.idea
 .node-version
 .sass-cache/
-package-lock.json
-*.map

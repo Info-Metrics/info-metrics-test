@@ -66,7 +66,7 @@ var _mfpOn = function(name, f) {
 			// converts "mfpEventName" to "eventName" callback and triggers it if it's present
 			e = e.charAt(0).toLowerCase() + e.slice(1);
 			if(mfp.st.callbacks[e]) {
-				mfp.st.callbacks[e].apply(mfp, Array.isArray(data) ? data : [data]);
+				mfp.st.callbacks[e].apply(mfp, $.isArray(data) ? data : [data]);
 			}
 		}
 	},
@@ -158,7 +158,7 @@ MagnificPopup.prototype = {
 				}
 			}
 		} else {
-			mfp.items = Array.isArray(data.items) ? data.items : [data.items];
+			mfp.items = $.isArray(data.items) ? data.items : [data.items];
 			mfp.index = data.index || 0;
 		}
 
@@ -428,7 +428,7 @@ MagnificPopup.prototype = {
 
 
 		if(mfp.st.autoFocusLast && mfp._lastFocusedEl) {
-			$(mfp._lastFocusedEl).trigger('focus'); // put tab focus back
+			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
 		mfp.currItem = null;	
 		mfp.content = null;
@@ -624,7 +624,7 @@ MagnificPopup.prototype = {
 		var disableOn = options.disableOn !== undefined ? options.disableOn : $.magnificPopup.defaults.disableOn;
 
 		if(disableOn) {
-			if(typeof disableOn === "function") {
+			if($.isFunction(disableOn)) {
 				if( !disableOn.call(mfp) ) {
 					return true;
 				}
@@ -676,11 +676,7 @@ MagnificPopup.prototype = {
 			status = data.status;
 			text = data.text;
 
-			if (mfp.st.allowHTMLInStatusIndicator) {
-				mfp.preloader.html(text);
-			} else {
-				mfp.preloader.text(text);
-			}
+			mfp.preloader.html(text);
 
 			mfp.preloader.find('a').on('click', function(e) {
 				e.stopImmediatePropagation();
@@ -699,7 +695,7 @@ MagnificPopup.prototype = {
 	// "target" is an element that was clicked
 	_checkIfClose: function(target) {
 
-		if($(target).closest('.' + PREVENT_CLOSE_CLASS).length) {
+		if($(target).hasClass(PREVENT_CLOSE_CLASS)) {
 			return;
 		}
 
@@ -711,7 +707,7 @@ MagnificPopup.prototype = {
 		} else {
 
 			// We close the popup if click is on close button or on preloader. Or if there is no content.
-			if(!mfp.content || $(target).closest('.mfp-close').length || (mfp.preloader && target === mfp.preloader[0]) ) {
+			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
 				return true;
 			}
 
@@ -742,7 +738,7 @@ MagnificPopup.prototype = {
 		return (  (mfp.isIE7 ? _document.height() : document.body.scrollHeight) > (winHeight || _window.height()) );
 	},
 	_setFocus: function() {
-		(mfp.st.focus ? mfp.content.find(mfp.st.focus).eq(0) : mfp.wrap).trigger('focus');
+		(mfp.st.focus ? mfp.content.find(mfp.st.focus).eq(0) : mfp.wrap).focus();
 	},
 	_onFocusIn: function(e) {
 		if( e.target !== mfp.wrap[0] && !$.contains(mfp.wrap[0], e.target) ) {
@@ -783,11 +779,7 @@ MagnificPopup.prototype = {
 				}
 
 			} else {
-				if (mfp.st.allowHTMLInTemplate) {
-					template.find(EVENT_NS + '-'+key).html(value);
-				} else {
-					template.find(EVENT_NS + '-'+key).text(value);
-				}
+				template.find(EVENT_NS + '-'+key).html(value);
 			}
 		});
 	},
@@ -890,11 +882,7 @@ $.magnificPopup = {
 
 		tLoading: 'Loading...',
 
-		autoFocusLast: true,
-
-		allowHTMLInStatusIndicator: false,
-
-		allowHTMLInTemplate: false
+		autoFocusLast: true
 
 	}
 };

@@ -6,7 +6,7 @@ var _imgInterval,
 		var src = mfp.st.image.titleSrc;
 
 		if(src) {
-			if(typeof src === "function") {
+			if($.isFunction(src)) {
 				return src.call(mfp, item);
 			} else if(item.el) {
 				return item.el.attr(src) || '';
@@ -33,7 +33,7 @@ $.magnificPopup.registerModule('image', {
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title',
 		verticalFit: true,
-		tError: 'The image could not be loaded.'
+		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
 
 	proto: {
@@ -138,23 +138,6 @@ $.magnificPopup.registerModule('image', {
 
 			var guard = 0,
 
-				imgSt = mfp.st.image,
-
-				// image error handler
-				onLoadError = function() {
-					if(item) {
-						item.img.off('.mfploader');
-						if(item === mfp.currItem){
-							mfp._onImageHasSize(item);
-							mfp.updateStatus('error', imgSt.tError.replace('%url%', item.src) );
-						}
-
-						item.hasSize = true;
-						item.loaded = true;
-						item.loadError = true;
-					}
-				},
-
 				// image load complete handler
 				onLoadComplete = function() {
 					if(item) {
@@ -183,8 +166,23 @@ $.magnificPopup.registerModule('image', {
 							}
 						}
 					}
-				};
-				
+				},
+
+				// image error handler
+				onLoadError = function() {
+					if(item) {
+						item.img.off('.mfploader');
+						if(item === mfp.currItem){
+							mfp._onImageHasSize(item);
+							mfp.updateStatus('error', imgSt.tError.replace('%url%', item.src) );
+						}
+
+						item.hasSize = true;
+						item.loaded = true;
+						item.loadError = true;
+					}
+				},
+				imgSt = mfp.st.image;
 
 
 			var el = template.find('.mfp-img');
