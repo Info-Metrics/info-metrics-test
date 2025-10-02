@@ -11,6 +11,9 @@ import yaml     from 'js-yaml';
 import fs       from 'fs';
 import terser   from 'gulp-terser';
 import babel   from 'gulp-babel';
+import ghpages from 'gh-pages';
+import path from 'path';
+
 
 
 
@@ -43,10 +46,16 @@ gulp.task('default',
 gulp.task('deploy', gulp.series('build', push));
 
 // Add CNAME and Push the dist folder to gihub
-function push() {
-     return gulp.src(['./dist/**/*', './src/CNAME'])
-        .pipe($.ghPages())
- }
+function push(done) {
+  ghpages.publish(path.join(process.cwd(), 'dist'), {
+    dot: true,                                     // include dotfiles like .nojekyll if any
+    message: `Deploy ${new Date().toISOString()}`, // nicer commit message
+    // branch: 'gh-pages',                         // uncomment to force a branch
+    // repo: 'https://github.com/Info-Metrics/info-metrics-test.git', // optional override
+    // user: { name: 'Arnob L. Alam', email: 'you@example.com' },     // if git identity is missing
+  }, done);
+}
+
 
 // Delete the "dist" folder
 // This happens every time a build starts
