@@ -16,6 +16,9 @@ const $ = plugins();
 // SASS thingy
 const gulpSass = require('gulp-sass')(require('sass'));
 
+// gh-pages thingy
+const ghpages = require('gh-pages');  // Add this line
+
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
 
@@ -39,10 +42,33 @@ gulp.task('default',
 gulp.task('deploy', gulp.series('build', push));
 
 // Add CNAME and Push the dist folder to gihub
-function push() {
-     return gulp.src(['./dist/**/*', './src/CNAME'])
-        .pipe($.ghPages())
- }
+function push(done) {
+  // Copy CNAME to dist root if it exists (for custom domains)
+  if (fs.existsSync('src/CNAME')) {
+    fs.copyFileSync('src/CNAME', PATHS.dist + '/CNAME');
+  }
+
+  // Publish dist to gh-pages branch
+  ghpages.publish(
+    PATHS.dist,
+    {
+      message: 'Auto-generated commit from Foundation deploy task',  // Custom commit message
+      branch: 'gh-pages',  // Default, but explicit for clarity; change if needed
+      // Add other options if desired, e.g.:
+      // repo: 'https://github.com/username/repo.git',  // If not using origin remote
+      // user: {name: 'Your Name', email: 'email@example.com'},  // For Git config
+    },
+    (err) => {
+      if (err) {
+        console.error('Error deploying:', err);
+        done(err);
+      } else {
+        console.log('Successfully deployed to GitHub Pages!');
+        done();
+      }
+    }
+  );
+}
 
 // Delete the "dist" folder
 // This happens every time a build starts
