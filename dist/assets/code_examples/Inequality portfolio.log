@@ -1,0 +1,48 @@
+
+--- Job Inequality portfolio.gms Start 03/08/17 12:17:34 24.3.3 r48116 WEX-WEI x86 64bit/MS Windows
+GAMS 24.3.3   Copyright (C) 1987-2014 GAMS Development. All rights reserved
+*** License file too old for this version of GAMS.
+*** Maintenance expired 24 days ago.
+Licensee: Dept of Economics                              G131209:0355AO-WIN
+          American University                                         DC487
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- Inequality portfolio.gms(87) 3 Mb
+--- Starting execution: elapsed 0:00:00.004
+--- Inequality portfolio.gms(48) 4 Mb
+--- Generating NLP model Uno
+--- Inequality portfolio.gms(80) 6 Mb
+---   4 rows  4 columns  13 non-zeroes
+---   50 nl-code  6 nl-non-zeroes
+--- Inequality portfolio.gms(80) 4 Mb
+--- Executing CONOPT: elapsed 0:00:00.026
+CONOPT 3         24.3.3 r48116 Released Sep 19, 2014 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.16C
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.3500000000E+00 (Input point)
+                                Pre-triangular equations:        0
+                                Post-triangular equations:       1
+      1   0        2.3500000000E+00 (After pre-processing)
+      2   0        2.3500000000E+00 (After scaling)
+ 
+ ** Feasible solution. Value of objective =   0.782017041085
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+      4   3        7.8201704109E-01 0.0E+00     0
+ 
+ ** Optimal solution. There are no superbasic variables.
+ 
+--- Restarting execution
+--- Inequality portfolio.gms(80) 2 Mb
+--- Reading solution for model Uno
+--- Executing after solve: elapsed 0:00:00.122
+--- Inequality portfolio.gms(86) 3 Mb
+*** Status: Normal completion
+--- Job Inequality portfolio.gms Stop 03/08/17 12:17:34 elapsed 0:00:00.132

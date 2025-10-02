@@ -1,0 +1,189 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109788105-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109788105-1');
+</script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="info-metrics,information theory, maximum entropy, modeling, optimality, uncertainty, under-determined problems, inference, multidisciplinary modeling, statistical inference " />
+    <title>Smoker - Foundations of Info-Metrics</title>
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+    // Create the chart
+    Highcharts.Chart('container', { /*Highcharts options*/ });
+    </script>    
+</head>
+
+<body>
+
+     <div data-sticky-container>
+    <div class="top-bar" data-sticky data-options="marginTop:0" style="width:100%">
+        <div class="top-bar-title">
+            <a href="#">Foundations of Info-Metrics</a>
+        </div>
+        <div>
+            <div class="top-bar-left" data-responsive-toggle="main-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+            </div>
+            <div class="top-bar-right hide-for-small-only">
+                <ul class="menu" data-accordion-menu>
+                    <li>
+                        <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
+                    </li>
+                    <li>
+                        <a href="../books.html">Other Books by the Author</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="row">
+        <div class="column small-12 medium-4">
+            <nav id="main-menu">
+                <ul class="menu vertical">
+                    <li >
+                        <a href="../index.html">Home</a></li>
+                    <li >
+                        <a href="../topics.html">Short Table of Contents</a></li>
+                    <li >
+                        <a href="../toc.html">Detailed Table of Contents</a></li>
+                    <li  class="active" >
+                        <a href="../interact.html">Interactive Examples</a></li>
+                    <li >
+                        <a href="../code.html">Codes and Examples</a></li>
+                    <li >
+                        <a href="../data.html">Data for Examples</a></li>
+                    <li >
+                        <a href="../bibliography.html">Bibliography</a></li>
+                    <li >
+                        <a href="../supplemental.html">Supplemental Material by
+                        Chapter</a></li>
+                    <li >
+                        <a href="../endorsements.html">Reviews and Endorsements</a></li>
+                    <li >
+                        <a href="../video.html">Recent 'Foundations' Talks</a>
+                    </li>
+                    <li>
+                        <a href="https://www.american.edu/cas/economics/info-metrics/">Info-Metrics Institute at American University</a></li>
+                    <li class="show-for-small-only">
+                        <a href="https://www.american.edu/cas/faculty/agolan.cfm">About the Author</a>
+                    </li>
+                    <li class="show-for-small-only">
+                        <a href="../books.html">Other Books by the Author</a>
+                    </li>
+                </ul>
+                <form class="card" action="https://formspree.io/info-metrics@american.edu", method="POST">
+                    <section class="card-divider">
+                        <label>Join the Mailing List
+                    </section>
+                
+                    <section class="card-section">
+                            <a href="#" rel="popover" title="Info-Metrics Mailing List"
+                
+                                data-content="The mailing list is a place to ask questions related to the field of info-metrics."><i class="glyphicon glyphicon-question-sign"></i></a>
+                
+                        </label>
+                
+                        <input type="text" placeholder="name@example.com" name="email">
+                
+                        <button type="submit" class="button">Join</button>
+                    </section>
+                
+                  </form>
+            </nav>
+        </div>
+        <div class="column small-12 medium-8">
+            
+            
+            <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var myChart = 
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Simulated probability of being a smoker for a given set of characteristics'
+                },
+                subtitle: {
+                    text: '(Baseline: Male, Age 39, High School Grad, White)'
+                },
+                xAxis: {
+                    categories: [
+                        'Smoking Ban',
+                        'Gender',
+                        'Age'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Probability of Being a Smoker'
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: 'Baseline',
+                    data: [0.39, 0.39, 0.39]
+            
+                }, {
+                    name: 'Alternate',
+                    data: [0.33, 0.28, 0.32]
+            
+                }]
+            });
+            });
+            </script>
+            
+            <header>
+                <h1 class="title">Smoker Probabilities</h1>
+            </header>
+            
+            
+            <ul class="tabs" data-tabs id="example-tabs">
+                <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Smoker Example</a></li>
+            </ul>
+            
+            <div class="tabs-content" data-tabs-content="example-tabs">
+                <div class="tabs-panel is-active" id="panel1">
+            	   <div id="container" style="width:100%; height:400px;"></div>
+                    <p> Info-metrics discrete choice example (for exact specification see Chapter 12). The model predicts the probability of an individual smoking, given their demographic characteristics. A dummy variable representing whether there was a smoking ban at their workplace was included, and the respective marginal effects captured to what degree it induced people to quit, conditional on their demographic characteristics. These estimates can be used to simulate different profiles of people, few of which are shown in the figure.</p>
+            
+                    <p>The data set used for this estimation is a sample of 10,000 US indoor workers in 1991-1993. The data set contains information on whether individuals were, or were not, subject to a workplace smoking ban, whether or not the individuals smoked, and other individual characteristics. You can find the data in the data section of this webpage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/app.js"></script>
+
+</body>
+
+</html>
