@@ -1,71 +1,41 @@
-# ZURB Template
+# Foundations of Info-Metrics website
 
-[![devDependency Status](https://david-dm.org/zurb/foundation-zurb-template/dev-status.svg)](https://david-dm.org/zurb/foundation-zurb-template#info=devDependencies)
+Source for [info-metrics.org](https://info-metrics.org), the companion site for *Foundations of Info-Metrics*. It is a static site built with [Foundation for Sites](https://get.foundation/sites) 6, Panini (Handlebars) templates, and a Gulp build.
 
-**Please open all issues with this template on the main [Foundation for Sites](https://github.com/zurb/foundation-sites/issues) repo.**
+## Requirements
 
-This is the official ZURB Template for use with [Foundation for Sites](http://foundation.zurb.com/sites). We use this template at ZURB to deliver static code to our clients. It has a Gulp-powered build system with these features:
-
-- Handlebars HTML templates with Panini
-- Sass compilation and prefixing
-- JavaScript concatenation
-- Built-in BrowserSync server
-- For production builds:
-  - CSS compression
-  - JavaScript compression
-  - Image compression
-
-## Installation
-
-To use this template, your computer needs:
-
-- [NodeJS](https://nodejs.org/en/) (0.12 or greater)
+- [Node.js](https://nodejs.org/) and [Yarn](https://classic.yarnpkg.com/) (or npm)
+- [Bower](https://bower.io/) for front-end libraries: `npm install --global bower`
 - [Git](https://git-scm.com/)
 
-This template can be installed with the Foundation CLI, or downloaded and set up manually.
-
-### Using the CLI
-
-Install the Foundation CLI with this command:
+## Setup
 
 ```bash
-npm install foundation-cli --global
-```
-
-Use this command to set up a blank Foundation for Sites project with this template:
-
-```bash
-foundation new --framework sites --template zurb
-```
-
-The CLI will prompt you to give your project a name. The template will be downloaded into a folder with this name.
-
-Now `cd` to your project name and to start your project run 
-
-```bash
-foundation watch
-```
-
-### Manual Setup
-
-To manually set up the template, first download it with Git:
-
-```bash
-git clone https://github.com/zurb/foundation-zurb-template projectname
-```
-
-Then open the folder in your command line, and install the needed dependencies:
-
-```bash
-cd projectname
-npm install
+yarn install
 bower install
 ```
 
-Finally, run `npm start` to run Gulp. Your finished site will be created in a folder called `dist`, viewable at this URL:
+## Development
 
-```
-http://localhost:8000
+```bash
+npm start
 ```
 
-To create compressed, production-ready assets, run `npm run build`.
+This builds the site into `dist/`, serves it at http://localhost:8000, and rebuilds when files in `src/` change.
+
+## Project layout
+
+- `src/pages/`: one HTML file per page; front matter sets the page `title`
+- `src/layouts/default.html`: shared page shell, including per-page scripts
+- `src/partials/`: header, navigation, footer
+- `src/assets/`: Sass, JavaScript, images, fonts, and downloadable files (code examples, data, sample chapters)
+- `config.yml`: dev server port, browser targets, and the asset and library paths used by the build
+
+## Build and deploy
+
+```bash
+npm run build    # production build into dist/
+npm run deploy   # production build, then publish dist/ to the gh-pages branch
+```
+
+The deploy copies `src/CNAME` into `dist/` so the custom domain stays set on GitHub Pages.
