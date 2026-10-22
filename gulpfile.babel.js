@@ -13,11 +13,11 @@ import fs       from 'fs';
 // Load all Gulp plugins into one variable
 const $ = plugins();
 
-// SASS thingy
+// gulp-sass 5 needs a Sass compiler passed in
 const gulpSass = require('gulp-sass')(require('sass'));
 
-// gh-pages thingy
-const ghpages = require('gh-pages');  // Add this line
+// Publishes the dist folder to the gh-pages branch
+const ghpages = require('gh-pages');
 
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
@@ -32,7 +32,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(pages, sass, javascript, images, fonts, copy), styleGuide));
+ gulp.series(clean, gulp.parallel(pages, sass, javascript, singlePageJavascript, images, fonts, copy), styleGuide));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -41,22 +41,18 @@ gulp.task('default',
 // Build the site and then push to Github
 gulp.task('deploy', gulp.series('build', push));
 
-// Add CNAME and Push the dist folder to gihub
+// Add CNAME and push the dist folder to GitHub Pages
 function push(done) {
-  // Copy CNAME to dist root if it exists (for custom domains)
+  // Copy CNAME to dist root so the custom domain survives each deploy
   if (fs.existsSync('src/CNAME')) {
     fs.copyFileSync('src/CNAME', PATHS.dist + '/CNAME');
   }
 
-  // Publish dist to gh-pages branch
   ghpages.publish(
     PATHS.dist,
     {
-      message: 'Auto-generated commit from Foundation deploy task',  // Custom commit message
-      branch: 'gh-pages',  // Default, but explicit for clarity; change if needed
-      // Add other options if desired, e.g.:
-      // repo: 'https://github.com/username/repo.git',  // If not using origin remote
-      // user: {name: 'Your Name', email: 'email@example.com'},  // For Git config
+      message: 'Auto-generated commit from Foundation deploy task',
+      branch: 'gh-pages'
     },
     (err) => {
       if (err) {
@@ -130,14 +126,9 @@ function sass() {
     .pipe(browser.reload({ stream: true }));
 }
 
+// Combine JavaScript into one file
+// In production, the file is minified
 function javascript() {
-  // Insert this section before the return statement
-  gulp.src('src/assets/js/single-page/**/*.js')
-  .pipe($.if(PRODUCTION, $.uglify()
-    .on('error', e => { console.log(e); })
-  ))
-  .pipe(gulp.dest(PATHS.dist + '/assets/js/single-page'));
-
   return gulp.src(PATHS.javascript)
     .pipe($.sourcemaps.init())
     .pipe($.babel({ignore: ['what-input.js']}))
@@ -147,6 +138,16 @@ function javascript() {
     ))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+}
+
+// Copy page-specific scripts, which are loaded individually by the layout
+// In production, they are minified
+function singlePageJavascript() {
+  return gulp.src('src/assets/js/single-page/**/*.js')
+    .pipe($.if(PRODUCTION, $.uglify()
+      .on('error', e => { console.log(e); })
+    ))
+    .pipe(gulp.dest(PATHS.dist + '/assets/js/single-page'));
 }
 
 // Copy images to the "dist" folder
@@ -172,19 +173,13 @@ function server(done) {
   done();
 }
 
-// Reload the browser with BrowserSync
-function reload(done) {
-  browser.reload();
-  done();
-}
-
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
   gulp.watch('src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('src/assets/scss/**/*.scss').on('all', sass);
-  gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(javascript, browser.reload));
+  gulp.watch('src/assets/js/**/*.js').on('all', gulp.series(gulp.parallel(javascript, singlePageJavascript), browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
   gulp.watch('src/assets/fonts/**/*').on('all', gulp.series(fonts, browser.reload));
   gulp.watch('bower_components/font-awesome/fonts/*').on('all', gulp.series(fonts, browser.reload));
